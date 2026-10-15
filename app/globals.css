@@ -1,0 +1,529 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600;1,700&family=Syne:wght@700;800;900&family=Titan+One&family=Bungee&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@400;500;600;700;800&family=Permanent+Marker&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap');
+
+:root {
+  /* Black, Pastel & White Theme Tokens */
+  --theme-black: #000000;
+  --theme-black-soft: #121214;
+  --theme-pastel: #edeef2;
+  --theme-pastel-subtle: #f5f5f8;
+  --theme-pastel-border: #d4d4dc;
+  --theme-white: #ffffff;
+  --stripe-pastel: #edeef2;
+  --stripe-white: #ffffff;
+
+  /* Candy Stripe & Editorial Y2K Tokens */
+  --stripe-pink: #f7c6d2;
+  --stripe-cream: #fff7f9;
+  --magenta-bold: #d81b60;
+  --magenta-dark: #880e4f;
+  --folder-tab: #111111;
+  --folder-body: #ffffff;
+
+  /* Acid Pop / Y2K Street Graffiti Palette */
+  --bg-acid: #aef324;
+  --bg-acid-light: #c6fb45;
+  --bg-acid-dark: #8cd612;
+  --bg-canvas: #a3ec13;
+  --bg-grunge: #142308;
+
+  --pop-pink: #ff1f82;
+  --pop-pink-glow: #ff4d9e;
+  --pop-yellow: #ffee00;
+  --pop-cyan: #00f0ff;
+  --pop-blue: #1b45ff;
+  --pop-purple: #902bf5;
+  --pop-orange: #ff5900;
+  --pop-lime: #b6ff1a;
+
+  --ink-black: #08090c;
+  --ink-dark: #12141a;
+  --paper-white: #ffffff;
+  --paper-cream: #fefce8;
+  --paper-subtle: #f6fae4;
+
+  --text-primary: #08090c;
+  --text-secondary: #272f1b;
+  --text-muted: #53643d;
+  --text-inverse: #ffffff;
+
+  /* Comic Ink Borders & Brutalist Shadows */
+  --ink-border: 3px solid var(--ink-black);
+  --ink-border-thick: 4px solid var(--ink-black);
+  --shadow-brutal-sm: 3px 3px 0px var(--ink-black);
+  --shadow-brutal: 5px 5px 0px var(--ink-black);
+  --shadow-brutal-lg: 8px 8px 0px var(--ink-black);
+  --shadow-brutal-pink: 6px 6px 0px var(--pop-pink);
+  --shadow-brutal-yellow: 6px 6px 0px var(--pop-yellow);
+  --shadow-brutal-blue: 6px 6px 0px var(--pop-blue);
+
+  /* Fonts */
+  --font-poppins: 'Poppins', sans-serif;
+  --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-editorial: 'Syne', 'Plus Jakarta Sans', sans-serif;
+  --font-script: 'Alex Brush', 'Dancing Script', cursive;
+  --font-calligraphy: 'Great Vibes', cursive;
+  --font-bubble: 'Titan One', cursive;
+  --font-bungee: 'Bungee', cursive;
+  --font-pixel: 'Silkscreen', monospace;
+  --font-graffiti: 'Permanent Marker', cursive;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+  background-color: #ffffff;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+  position: relative;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Halftone Dots Overlay */
+body::before {
+  display: none;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Neo-Brutalist Sticker Cards */
+.brutal-card, .glass-card, .glass-panel {
+  background: var(--paper-white);
+  border: var(--ink-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-brutal-lg);
+  position: relative;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brutal-card:hover, .glass-card:hover {
+  transform: translate(-3px, -3px) rotate(-0.4deg);
+  box-shadow: 11px 11px 0px var(--ink-black);
+}
+
+/* Washi Tape Accent */
+.sticker-tape {
+  position: absolute;
+  top: -14px;
+  left: 28px;
+  background: var(--pop-yellow);
+  color: var(--ink-black);
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 16px;
+  border: 2px solid var(--ink-black);
+  box-shadow: 2px 2px 0px var(--ink-black);
+  transform: rotate(-3deg);
+  z-index: 10;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.sticker-tape-pink {
+  background: var(--pop-pink);
+  color: #fff;
+  transform: rotate(2.5deg);
+  left: auto;
+  right: 28px;
+}
+
+/* Comic / Y2K Action Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 14px 26px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  border: var(--ink-border);
+  box-shadow: var(--shadow-brutal);
+  text-transform: uppercase;
+  outline: none;
+}
+
+.btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0px var(--ink-black);
+}
+
+.btn-primary {
+  background: var(--pop-pink);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #ff3893;
+  transform: translate(-3px, -3px) rotate(-1deg);
+  box-shadow: var(--shadow-brutal-lg);
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background: var(--pop-yellow);
+  color: var(--ink-black);
+}
+
+.btn-secondary:hover {
+  background: #fff033;
+  transform: translate(-3px, -3px) rotate(1deg);
+  box-shadow: var(--shadow-brutal-lg);
+}
+
+.btn-cyan {
+  background: var(--pop-cyan);
+  color: var(--ink-black);
+}
+
+.btn-cyan:hover {
+  background: #38f4ff;
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-brutal-lg);
+}
+
+.btn-ghost {
+  background: #ffffff;
+  color: var(--ink-black);
+  border: 2.5px solid var(--ink-black);
+  box-shadow: 3px 3px 0px var(--ink-black);
+}
+
+.btn-ghost:hover {
+  background: var(--pop-yellow);
+  color: var(--ink-black);
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px var(--ink-black);
+}
+
+/* Badges & Comic Stamps */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 7px 16px;
+  border-radius: var(--radius-full);
+  background: var(--paper-white);
+  color: var(--ink-black);
+  border: 2.5px solid var(--ink-black);
+  box-shadow: 3px 3px 0px var(--ink-black);
+  text-transform: uppercase;
+}
+
+.badge-pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--pop-pink);
+  border: 1.5px solid var(--ink-black);
+  box-shadow: 0 0 6px var(--pop-pink);
+  animation: popPulse 1.4s infinite alternate ease-in-out;
+}
+
+@keyframes popPulse {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  100% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Tag Pills */
+.tag-pill {
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-md);
+  background: var(--paper-white);
+  color: var(--ink-black);
+  border: 2px solid var(--ink-black);
+  box-shadow: 2px 2px 0px var(--ink-black);
+  transition: all 0.15s ease;
+}
+
+.tag-pill:hover {
+  background: var(--pop-yellow);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--ink-black);
+}
+
+/* Form Inputs */
+.form-input, .form-textarea {
+  width: 100%;
+  background: #ffffff;
+  border: var(--ink-border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  color: var(--ink-black);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.15s ease;
+  box-shadow: 3px 3px 0px var(--ink-black);
+  outline: none;
+}
+
+.form-input:focus, .form-textarea:focus {
+  background: #fff;
+  border-color: var(--ink-black);
+  box-shadow: 5px 5px 0px var(--pop-pink);
+  transform: translate(-2px, -2px);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Bento Grid */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+.bento-col-12 { grid-column: span 12; }
+.bento-col-8 { grid-column: span 8; }
+.bento-col-7 { grid-column: span 7; }
+.bento-col-6 { grid-column: span 6; }
+.bento-col-5 { grid-column: span 5; }
+.bento-col-4 { grid-column: span 4; }
+
+@media (max-width: 900px) {
+  .bento-col-8, .bento-col-7, .bento-col-6, .bento-col-5, .bento-col-4 {
+    grid-column: span 12;
+  }
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 52px auto;
+  position: relative;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-family: var(--font-pixel);
+  color: var(--ink-black);
+  background: var(--pop-yellow);
+  padding: 5px 14px;
+  border: 2px solid var(--ink-black);
+  box-shadow: 3px 3px 0px var(--ink-black);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  transform: rotate(-1.5deg);
+  font-weight: 700;
+}
+
+.section-title {
+  font-family: var(--font-bubble);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  color: var(--ink-black);
+  text-shadow: 3px 3px 0px #ffffff, 6px 6px 0px var(--ink-black);
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Typography Gradient Overrides */
+.gradient-text {
+  color: var(--pop-pink);
+  text-shadow: 2px 2px 0px #fff, 4px 4px 0px var(--ink-black);
+  -webkit-text-fill-color: initial;
+}
+
+.gradient-text-emerald {
+  color: var(--pop-blue);
+  text-shadow: 2px 2px 0px #fff, 4px 4px 0px var(--ink-black);
+  -webkit-text-fill-color: initial;
+}
+
+.gradient-text-purple {
+  color: var(--pop-purple);
+  text-shadow: 2px 2px 0px #fff, 4px 4px 0px var(--ink-black);
+  -webkit-text-fill-color: initial;
+}
+
+/* Halftone Starburst Badge */
+.comic-burst {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pop-yellow);
+  color: var(--ink-black);
+  font-family: var(--font-bubble);
+  border: 3px solid var(--ink-black);
+  box-shadow: 4px 4px 0px var(--ink-black);
+  transform: rotate(-4deg);
+}
+
+/* Custom Scrollbar - Black & White Theme */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #000000 #edeef2;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #edeef2;
+  border-left: 2px solid #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #000000;
+  border: 2px solid #000000;
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a2a2e;
+}
+
+/* ========================================================================== */
+/* RESPONSIVE DESIGN & MOBILE OPTIMIZATIONS                                   */
+/* ========================================================================== */
+
+@media (max-width: 860px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .mobile-toggle {
+    display: inline-flex !important;
+  }
+  .nav-status-badge {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .guestbook-form-card {
+    position: relative !important;
+    top: auto !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px !important;
+  }
+  
+  .section-header {
+    margin-bottom: 36px !important;
+  }
+  
+  .section-title {
+    font-size: 1.95rem !important;
+    text-shadow: 2px 2px 0px #fff, 4px 4px 0px var(--ink-black) !important;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem !important;
+  }
+
+  .btn {
+    padding: 12px 20px !important;
+    font-size: 0.88rem !important;
+  }
+
+  .responsive-form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-cassette {
+    transform: scale(0.68) rotate(7deg) !important;
+    transform-origin: top right !important;
+    right: 0 !important;
+    top: -20px !important;
+  }
+
+  .hero-worm-left {
+    display: none !important;
+  }
+
+  .hero-worm-right {
+    display: none !important;
+  }
+
+  .hero-radio {
+    transform: scale(0.68) rotate(-9deg) !important;
+    transform-origin: bottom left !important;
+    left: -12px !important;
+    bottom: -15px !important;
+  }
+
+  .hero-earphones {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.75rem !important;
+  }
+  
+  .sticker-tape {
+    font-size: 0.6rem !important;
+    padding: 2px 10px !important;
+    left: 16px !important;
+  }
+  
+  .sticker-tape-pink {
+    right: 16px !important;
+    left: auto !important;
+  }
+}
