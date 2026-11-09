@@ -20,7 +20,7 @@ export default function ContactSection() {
   const [copiedEmail, setCopiedEmail] = useState(false);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('adamnaeman@dev.io');
+    navigator.clipboard.writeText('0damkim254@gmail.com');
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2200);
   };
@@ -126,7 +126,7 @@ export default function ContactSection() {
         </div>
 
         {/* ================================================================== */}
-        {/* TWO-COLUMN CONTACT LAYOUT (DIRECT CHANNELS + TRANSMISSION FORM)    */}
+        {/* TWO-COLUMN CONTACT LAYOUT (DETAILS + CONVERSATION LINKS)         */}
         {/* ================================================================== */}
         <div 
           className="contact-grid"
@@ -138,7 +138,7 @@ export default function ContactSection() {
           }}
         >
           {/* ================================================================ */}
-          {/* LEFT COLUMN: DIRECT CHANNELS & AVAILABILITY                      */}
+          {/* LEFT COLUMN: CONTACT DETAILS & AVAILABILITY                      */}
           {/* ================================================================ */}
           <div
             style={{
@@ -176,7 +176,7 @@ export default function ContactSection() {
                     color: '#000000',
                   }}
                 >
-                  Direct Channels
+                  Contact Details
                 </span>
 
                 {/* Live Availability Badge */}
@@ -230,7 +230,7 @@ export default function ContactSection() {
                   marginBottom: '28px',
                 }}
               >
-                Direct messages reach my primary inbox and synchronize with Supabase PostgreSQL. Whether discussing contract engineering or full-time roles, I typically respond within 24 hours.
+                Direct messages land in my inbox at 0damkim254@gmail.com — open to internships, collaborations and freelance builds. I usually reply within 24 hours.
               </p>
 
               {/* Contact Information Blocks */}
@@ -276,10 +276,10 @@ export default function ContactSection() {
                           textTransform: 'uppercase',
                         }}
                       >
-                        Email Frequency
+                        Email
                       </div>
                       <a
-                        href="mailto:adamnaeman@dev.io"
+                        href="mailto:0damkim254@gmail.com"
                         style={{
                           fontFamily: 'var(--font-poppins)',
                           fontSize: '0.92rem',
@@ -292,7 +292,7 @@ export default function ContactSection() {
                           whiteSpace: 'nowrap',
                         }}
                       >
-                        adamnaeman@dev.io
+                        0damkim254@gmail.com
                       </a>
                     </div>
                   </div>
@@ -454,7 +454,7 @@ export default function ContactSection() {
               </div>
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                 <a
-                  href="https://github.com/adamnaeman"
+                  href="https://github.com/adamnaemman"
                   target="_blank"
                   rel="noreferrer"
                   className="contact-pill-link"
@@ -464,7 +464,17 @@ export default function ContactSection() {
                   <ArrowUpRight size={12} />
                 </a>
                 <a
-                  href="https://vercel.com"
+                  href="https://www.linkedin.com/in/adam-naeman/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="contact-pill-link"
+                >
+                  <Linkedin size={14} />
+                  <span>LINKEDIN</span>
+                  <ArrowUpRight size={12} />
+                </a>
+                <a
+                  href="https://adamnaeman.vercel.app"
                   target="_blank"
                   rel="noreferrer"
                   className="contact-pill-link"
@@ -472,21 +482,12 @@ export default function ContactSection() {
                   <span>▲ VERCEL</span>
                   <ArrowUpRight size={12} />
                 </a>
-                <a
-                  href="https://supabase.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="contact-pill-link"
-                >
-                  <span>⚡ SUPABASE</span>
-                  <ArrowUpRight size={12} />
-                </a>
               </div>
             </div>
           </div>
 
           {/* ================================================================ */}
-          {/* RIGHT COLUMN: CONTACT TRANSMISSION FORM                          */}
+          {/* RIGHT COLUMN: DIRECT CONTACT LINKS                              */}
           {/* ================================================================ */}
           <div
             style={{
@@ -518,7 +519,7 @@ export default function ContactSection() {
                   color: '#000000',
                 }}
               >
-                Direct Channels
+                Start a Conversation
               </span>
 
               <span

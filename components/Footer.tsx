@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ArrowUp, Database, Sparkles } from 'lucide-react';
+import { ArrowUp, Github, Linkedin } from 'lucide-react';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -65,7 +65,11 @@ export default function Footer() {
 
           {/* Platform Badges */}
           <div className="footer-badges-cluster" style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-            <div
+            <a
+              href="https://github.com/adamnaemman"
+              target="_blank"
+              rel="noreferrer"
+              className="footer-badge-link"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -78,11 +82,36 @@ export default function Footer() {
                 border: '1.5px solid #000000',
                 color: '#000000',
                 fontWeight: 700,
+                textDecoration: 'none',
               }}
             >
-              <Database size={13} color="#000000" />
-              <span>SUPABASE POSTGRESQL</span>
-            </div>
+              <Github size={13} color="#000000" />
+              <span>GITHUB</span>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/adam-naeman/"
+              target="_blank"
+              rel="noreferrer"
+              className="footer-badge-link"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                fontSize: '0.72rem',
+                fontFamily: 'var(--font-mono)',
+                padding: '6px 12px',
+                borderRadius: 'var(--radius-full)',
+                background: '#edeef2',
+                border: '1.5px solid #000000',
+                color: '#000000',
+                fontWeight: 700,
+                textDecoration: 'none',
+              }}
+            >
+              <Linkedin size={13} color="#000000" />
+              <span>LINKEDIN</span>
+            </a>
 
             <div
               style={{
@@ -140,7 +169,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Adam Naeman. All rights reserved.
           </div>
           <div>
-            Crafted with Next.js 14, Supabase, TypeScript & Tactile Brutalism.
+            Crafted with Next.js 14, TypeScript &amp; Tactile Brutalism.
           </div>
         </div>
       </div>
@@ -167,6 +196,16 @@ export default function Footer() {
           background: #edeef2;
           transform: translateY(-2px);
           box-shadow: 3px 3px 0px #000000;
+        }
+
+        .footer-badge-link {
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .footer-badge-link:hover {
+          background: #ffffff !important;
+          transform: translateY(-2px);
+          box-shadow: 2px 2px 0px #000000;
         }
 
         @media (max-width: 640px) {
