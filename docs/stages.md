@@ -212,14 +212,37 @@ Windows + Next 14 ini (lihat lencongan di atas).
 
 ---
 
-## Stage 5 — Berat halaman (P1)
+## Stage 5 — Berat halaman ✅ (commit `4c7c940`)
 
-11 Google Font family dalam satu `@import`; 545K PNG + 345K JPG dalam `public/`.
+11 Google Font family dalam satu `@import` (53 kB CSS, **129 `@font-face`**); 890 kB gambar dalam
+`public/` yang **tidak dirujuk di mana-mana**; `/favicon.ico` 404.
 
-- Fail: `app/globals.css` — buang `@import` Google Fonts
-- Fail: `app/layout.tsx` — `next/font` untuk 2–3 family sahaja
-- Fail: `components/AboutMeSection.tsx` — `next/image` untuk diorama, compress ke webp
-- Bukti: bilangan request font, saiz `public/`, nombor build sebelum/selepas
+- Fail: `app/globals.css` — `@import` Google Fonts dibuang; semua `--font-*` kini var `--ff-*` dari
+  `next/font`, dengan fallback sistem (`system-ui`, `Georgia`, `ui-monospace`)
+- Fail: `app/layout.tsx` — `next/font/google` untuk **6 family**: Poppins (400/600/700/800/900),
+  Space Grotesk (variable), JetBrains Mono (variable), Silkscreen (400/700), Titan One (400),
+  Playfair Display (italic 600 sahaja, untuk overlay hero). Dibuang: Syne, Cormorant Garamond, Bungee,
+  Plus Jakarta Sans, Permanent Marker — tiada satu pun dipakai, atau hanya dalam komponen `0 import`
+  (`RetroStudioDiorama`)
+- Fail: `public/about-tray-diorama.png` (545 kB) + `.jpg` (345 kB) — dipadam, `grep` seluruh repo
+  tunjuk hanya `.git/index` yang menyebutnya
+- Fail baru: `app/icon.png` (512×512) — Next serve sebagai favicon; `<link rel="icon">` manual dibuang
+- Fail baru: `tools/make-og.py`, `tools/make-icon.py` — aset dijana semula bila-bila masa (PIL)
+
+**Bukti:**
+- `tsc --noEmit` → exit 0; `npm run build` → Compiled successfully, `/` 41.9 kB, First Load **129 kB**
+  (tak berubah), route table tambah `/icon.png`
+- Runtime (Chromium, cache dibersihkan, prod build lokal): **7 woff2 / 116 kB**, **0 request** ke
+  `fonts.googleapis|gstatic`, `@font-face` declared **129 → 40**, 9 loaded, body font = `__Poppins_*`
+- Saiz `public/` penuh: **≈1.07 MB → 204 kB**
+- Live: `icon.png` 200, `og.png` 200, `robots.txt` 200, `about-tray-diorama.png` **404** (dah tiada)
+- HTML live: `fonts.googleapis` **0**, `<link rel="icon" href="/icon.png?...">` hadir
+- `bash tools/check-links.sh` → all links ok
+- Screenshot hero: wordmark Poppins 900, italic overlay Playfair italic, label folder Silkscreen — gaya sama
+
+**Belum dibuat (bukan blok):** tiada `<link rel="preload" as="font">` dihasilkan next/font kerana font
+didaftar sebagai CSS variable pada `<html>`, bukan `className` pada elemen. Fail tetap same-origin dan
+`display: swap`; kalau nak preload, kena guna `className={poppins.className}` pada wrapper tertentu.
 
 ---
 
