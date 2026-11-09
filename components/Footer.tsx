@@ -27,6 +27,7 @@ export default function Footer() {
         }}
       >
         <div
+          className="footer-top-row"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -63,7 +64,7 @@ export default function Footer() {
           </div>
 
           {/* Platform Badges */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+          <div className="footer-badges-cluster" style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
             <div
               style={{
                 display: 'inline-flex',
@@ -104,7 +105,7 @@ export default function Footer() {
             {/* Back to top */}
             <button
               onClick={scrollToTop}
-              className="about-btn-secondary"
+              className="about-btn-secondary footer-top-btn"
               style={{ 
                 padding: '8px 16px', 
                 fontSize: '0.78rem',
@@ -120,6 +121,7 @@ export default function Footer() {
         </div>
 
         <div
+          className="footer-bottom-row"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -165,6 +167,27 @@ export default function Footer() {
           background: #edeef2;
           transform: translateY(-2px);
           box-shadow: 3px 3px 0px #000000;
+        }
+
+        @media (max-width: 640px) {
+          .footer-top-row {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 18px !important;
+          }
+          .footer-badges-cluster {
+            width: 100% !important;
+          }
+          .footer-top-btn {
+            width: 100% !important;
+            justify-content: center !important;
+            margin-top: 6px !important;
+          }
+          .footer-bottom-row {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 8px !important;
+          }
         }
       `}</style>
     </footer>

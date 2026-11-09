@@ -269,6 +269,7 @@ export default function ContactSection() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '28px' }}>
                 {/* Email Box */}
                 <div
+                  className="contact-email-box"
                   style={{
                     background: '#f8f8fb',
                     border: '1.5px solid #000000',
@@ -278,9 +279,10 @@ export default function ContactSection() {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     gap: '12px',
+                    flexWrap: 'wrap',
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: '1 1 auto' }}>
                     <div
                       style={{
                         width: '38px',
@@ -329,6 +331,7 @@ export default function ContactSection() {
 
                   <button
                     onClick={handleCopyEmail}
+                    className="contact-copy-btn"
                     title="Copy Email Address"
                     style={{
                       padding: '8px 12px',
@@ -851,19 +854,40 @@ export default function ContactSection() {
         @media (max-width: 960px) {
           .contact-grid {
             grid-template-columns: 1fr !important;
-            gap: 28px !important;
+            gap: 24px !important;
           }
         }
 
         @media (max-width: 640px) {
           .contact-section-container {
-            padding: 70px 0 !important;
+            padding: 60px 0 !important;
           }
           .contact-headline {
-            font-size: 2.5rem !important;
+            font-size: clamp(2.2rem, 8vw, 3rem) !important;
           }
           .responsive-form-grid {
             grid-template-columns: 1fr !important;
+          }
+          .contact-grid > div {
+            padding: 22px 16px !important;
+          }
+        }
+
+        @media (max-width: 380px) {
+          .contact-section-container {
+            padding: 50px 0 !important;
+          }
+          .contact-headline {
+            font-size: 2rem !important;
+          }
+          .contact-email-box {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 10px !important;
+          }
+          .contact-copy-btn {
+            width: 100% !important;
+            justify-content: center !important;
           }
         }
       `}</style>

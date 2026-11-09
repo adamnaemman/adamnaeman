@@ -709,6 +709,7 @@ export default function KeyboardExperienceProjects() {
 
         {/* Bottom Handoff to Let's Connect */}
         <div
+          className="kb-handoff-banner"
           style={{
             marginTop: '56px',
             background: '#ffffff',
@@ -756,7 +757,7 @@ export default function KeyboardExperienceProjects() {
               const el = document.getElementById('contact');
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="about-btn-primary"
+            className="about-btn-primary kb-handoff-btn"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -1108,30 +1109,88 @@ export default function KeyboardExperienceProjects() {
         /* Responsive Tablet & Mobile */
         @media (max-width: 960px) {
           .mechanical-keyboard-body-bw {
-            transform: rotateX(24deg) rotateZ(0deg);
+            transform: rotateX(20deg) rotateZ(0deg) !important;
+            max-width: 520px;
+            box-shadow: 10px 12px 0px #000000;
           }
           .mechanical-keyboard-body-bw:hover {
-            transform: rotateX(20deg) scale(1.01);
+            transform: rotateX(16deg) scale(1.01) !important;
           }
         }
 
         @media (max-width: 640px) {
           .keyboard-showcase-section {
-            padding-top: 110px !important;
+            padding-top: 60px !important;
             padding-bottom: 60px !important;
           }
           .skills-headline {
-            font-size: 2.5rem !important;
+            font-size: clamp(2.2rem, 8vw, 3rem) !important;
           }
-          .popup-backdrop {
-            padding: 14px;
-          }
-          .popup-modal-card {
-            padding: 20px 16px;
-            max-height: 92vh;
+          .mechanical-keyboard-body-bw {
+            padding: 14px 10px 12px 10px !important;
+            border-radius: 18px !important;
+            transform: rotateX(10deg) rotateZ(0deg) !important;
+            box-shadow: 6px 8px 0px #000000 !important;
+            max-width: 100% !important;
           }
           .keycaps-grid-5col {
-            gap: 6px;
+            gap: 6px !important;
+          }
+          .keycap-top-bw {
+            border-radius: 8px !important;
+            padding: 3px !important;
+            box-shadow: 0 3px 0 #000000, 0 4px 6px rgba(0, 0, 0, 0.15) !important;
+          }
+          .key-code-sub-bw {
+            font-size: 0.52rem !important;
+            top: 2px !important;
+            right: 4px !important;
+          }
+          .kb-model-label-bw {
+            font-size: 0.58rem !important;
+          }
+          .keyboard-bottom-lip-bw {
+            flex-direction: column !important;
+            gap: 4px !important;
+            text-align: center !important;
+            font-size: 0.56rem !important;
+          }
+          .ctrl-btn-bw {
+            font-size: 0.72rem !important;
+            padding: 7px 14px !important;
+            flex: 1 1 auto;
+            justify-content: center;
+          }
+          .kb-handoff-banner {
+            padding: 20px 16px !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+          }
+          .kb-handoff-btn {
+            width: 100% !important;
+            justify-content: center !important;
+          }
+        }
+
+        /* Responsive Small Mobile (max-width: 380px) */
+        @media (max-width: 380px) {
+          .mechanical-keyboard-body-bw {
+            transform: none !important;
+            padding: 10px 6px !important;
+            box-shadow: 4px 5px 0px #000000 !important;
+            border-width: 2px !important;
+          }
+          .keycaps-grid-5col {
+            gap: 4px !important;
+          }
+          .keycap-top-bw {
+            border-radius: 6px !important;
+          }
+          .key-code-sub-bw {
+            display: none !important;
+          }
+          .key-logo-center {
+            padding: 1px !important;
           }
         }
       `}</style>

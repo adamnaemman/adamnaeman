@@ -1797,9 +1797,10 @@ export default function ProjectsSection({
         }
 
         /* RESPONSIVE DESIGN */
-        @media (max-width: 768px) {
+        @media (max-width: 960px) {
           :global(.vertical-overlay-stage) {
             grid-template-columns: 1fr !important;
+            gap: 20px !important;
           }
           :global(.vertical-computers-sidebar) {
             position: static !important;
@@ -1807,31 +1808,57 @@ export default function ProjectsSection({
           }
           :global(.vertical-computers-scroll) {
             display: grid !important;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+            gap: 10px !important;
           }
         }
 
         @media (max-width: 640px) {
           :global(.computers-popup-dialog) {
-            padding: 18px 12px 30px 12px;
-            border-radius: 18px;
-            box-shadow: 6px 6px 0px #000000;
+            padding: 16px 8px 24px 8px !important;
+            border-radius: 16px !important;
+            box-shadow: 4px 4px 0px #000000 !important;
+            width: 96vw !important;
+            max-height: 94vh !important;
           }
           :global(.standalone-computer-item) {
             flex: 0 0 86vw !important;
+            width: 86vw !important;
+            max-width: 86vw !important;
           }
           :global(.horizontal-computers-scroll-track) {
-            gap: 28px;
-            padding: 16px 4px 30px 4px;
+            gap: 20px !important;
+            padding: 12px 4px 24px 4px !important;
           }
           :global(.overlay-project-card) {
-            padding: 20px 16px;
+            padding: 18px 14px !important;
+            border-radius: 18px !important;
+            box-shadow: 5px 5px 0px #000000 !important;
           }
           :global(.overlay-actions-row) {
-            flex-direction: column;
+            flex-direction: column !important;
           }
           :global(.project-action-btn) {
-            width: 100%;
+            width: 100% !important;
+            justify-content: center !important;
+          }
+          :global(.vertical-computers-scroll) {
+            grid-template-columns: 1fr !important;
+          }
+          :global(.scroll-guide-bar) {
+            flex-direction: column !important;
+            gap: 10px !important;
+            align-items: flex-start !important;
+          }
+        }
+
+        @media (max-width: 380px) {
+          :global(.standalone-computer-item) {
+            flex: 0 0 88vw !important;
+            width: 88vw !important;
+          }
+          :global(.overlay-project-card) {
+            padding: 14px 10px !important;
           }
         }
       `}</style>

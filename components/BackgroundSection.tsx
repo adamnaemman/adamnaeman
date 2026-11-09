@@ -296,6 +296,7 @@ export default function BackgroundSection() {
         {/* KEY METRICS STAT BAR                                               */}
         {/* ================================================================== */}
         <div
+          className="bg-stats-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))',
@@ -932,6 +933,7 @@ export default function BackgroundSection() {
         {/* BOTTOM SECTION HANDOFF BANNER -> SCROLLS TO SKILLS & EXPERIENCE    */}
         {/* ================================================================== */}
         <div
+          className="bg-handoff-banner"
           style={{
             marginTop: '56px',
             background: '#edeef2',
@@ -976,7 +978,7 @@ export default function BackgroundSection() {
 
           <button
             onClick={() => scrollTo('experience')}
-            className="about-btn-primary"
+            className="about-btn-primary bg-handoff-btn"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -1050,15 +1052,59 @@ export default function BackgroundSection() {
         @media (max-width: 960px) {
           .bg-main-grid {
             grid-template-columns: 1fr !important;
+            gap: 24px !important;
           }
         }
 
         @media (max-width: 640px) {
           .background-section-container {
-            padding: 70px 0 !important;
+            padding: 60px 0 !important;
           }
           .background-headline {
-            font-size: 2.5rem !important;
+            font-size: clamp(2.2rem, 8vw, 3rem) !important;
+          }
+          :global(.bg-stats-grid) {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+            margin-bottom: 32px !important;
+          }
+          .bg-stat-card {
+            padding: 14px 12px !important;
+          }
+          .timeline-card {
+            padding: 18px 14px !important;
+          }
+          .academic-card {
+            padding: 18px 14px !important;
+          }
+          .cert-card {
+            padding: 14px 12px !important;
+          }
+          .bg-handoff-banner {
+            padding: 20px 16px !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+          }
+          .bg-handoff-btn {
+            width: 100% !important;
+            justify-content: center !important;
+          }
+        }
+
+        /* Responsive Small Mobile (max-width: 380px) */
+        @media (max-width: 380px) {
+          .background-section-container {
+            padding: 50px 0 !important;
+          }
+          .background-headline {
+            font-size: 2rem !important;
+          }
+          .bg-filter-pill {
+            font-size: 0.68rem !important;
+            padding: 5px 8px !important;
+          }
+          :global(.bg-stats-grid) {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>

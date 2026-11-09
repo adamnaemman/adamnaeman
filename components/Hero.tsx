@@ -217,9 +217,10 @@ export default function Hero() {
       {/* ==================================================================== */}
       <div
         onClick={() => scrollTo('about')}
+        className="hero-scroll-indicator"
         style={{
           position: 'absolute',
-          bottom: '28px',
+          bottom: '24px',
           left: '50%',
           transform: 'translateX(-50%)',
           display: 'flex',
@@ -235,6 +236,8 @@ export default function Hero() {
           border: '2px solid #000000',
           boxShadow: '3px 3px 0px #000000',
           transition: 'all 0.2s ease',
+          maxWidth: 'calc(100vw - 32px)',
+          textAlign: 'center',
         }}
       >
         <span
@@ -244,6 +247,7 @@ export default function Hero() {
             fontWeight: 700,
             color: '#000000',
             letterSpacing: '0.04em',
+            whiteSpace: 'nowrap',
           }}
         >
           explore about me & creative work
@@ -282,44 +286,102 @@ export default function Hero() {
         @media (max-width: 960px) {
           .folder-about-me {
             top: 14% !important;
-            left: 8% !important;
+            left: 6% !important;
           }
           .folder-background {
             top: 14% !important;
-            right: 8% !important;
+            right: 6% !important;
           }
           .folder-connect {
             bottom: 14% !important;
-            right: 8% !important;
+            right: 6% !important;
           }
           .folder-experience {
             bottom: 14% !important;
-            left: 8% !important;
+            left: 6% !important;
           }
         }
 
         /* Responsive Mobile (max-width: 640px) */
         @media (max-width: 640px) {
           .candy-hero-cover {
-            background: repeating-linear-gradient(90deg, #edeef2 0px, #edeef2 42px, #ffffff 42px, #ffffff 84px) !important;
-            padding-top: 90px !important;
-            padding-bottom: 40px !important;
+            background: repeating-linear-gradient(90deg, #edeef2 0px, #edeef2 36px, #ffffff 36px, #ffffff 72px) !important;
+            padding-top: 80px !important;
+            padding-bottom: 30px !important;
+            min-height: 100svh !important;
+            height: 100svh !important;
+          }
+          .candy-folder {
+            transform: scale(0.82);
+            transform-origin: center center;
           }
           .folder-about-me {
-            top: 95px !important;
-            left: 16px !important;
+            top: 80px !important;
+            left: 12px !important;
           }
           .folder-background {
-            top: 95px !important;
-            right: 16px !important;
+            top: 80px !important;
+            right: 12px !important;
           }
           .folder-connect {
-            bottom: 85px !important;
-            right: 16px !important;
+            bottom: 74px !important;
+            right: 12px !important;
           }
           .folder-experience {
-            bottom: 85px !important;
-            left: 16px !important;
+            bottom: 74px !important;
+            left: 12px !important;
+          }
+          .folder-label {
+            font-size: 0.76rem !important;
+          }
+          .hero-bold-word {
+            font-size: clamp(2.2rem, 11vw, 5.2rem) !important;
+          }
+          .hero-script-overlay {
+            font-size: clamp(2rem, 8vw, 4.2rem) !important;
+          }
+          .hero-scroll-indicator {
+            padding: 8px 14px !important;
+            bottom: 16px !important;
+          }
+          .hero-scroll-indicator span {
+            font-size: 0.7rem !important;
+          }
+        }
+
+        /* Responsive Small Mobile (max-width: 380px) */
+        @media (max-width: 380px) {
+          .candy-folder {
+            transform: scale(0.72) !important;
+          }
+          .folder-about-me {
+            top: 72px !important;
+            left: 4px !important;
+          }
+          .folder-background {
+            top: 72px !important;
+            right: 4px !important;
+          }
+          .folder-connect {
+            bottom: 68px !important;
+            right: 4px !important;
+          }
+          .folder-experience {
+            bottom: 68px !important;
+            left: 4px !important;
+          }
+          .hero-bold-word {
+            font-size: 2.1rem !important;
+          }
+          .hero-script-overlay {
+            font-size: 1.85rem !important;
+          }
+          .hero-scroll-indicator {
+            padding: 6px 12px !important;
+            bottom: 12px !important;
+          }
+          .hero-scroll-indicator span {
+            font-size: 0.64rem !important;
           }
         }
       `}</style>

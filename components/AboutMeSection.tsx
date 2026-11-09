@@ -260,21 +260,53 @@ export default function AboutMeSection() {
           box-shadow: 4px 4px 0px #000000;
         }
 
-        /* Responsive Mobile (max-width: 640px) */
-        @media (max-width: 640px) {
+        /* Responsive Tablet & Mobile */
+        @media (max-width: 768px) {
           .about-section-container {
             padding: 70px 0 !important;
           }
+          .about-p {
+            font-size: 0.96rem !important;
+            line-height: 1.68 !important;
+          }
+        }
+
+        /* Responsive Mobile (max-width: 640px) */
+        @media (max-width: 640px) {
+          .about-section-container {
+            padding: 60px 0 !important;
+          }
           .about-headline {
-            font-size: 2.5rem !important;
+            font-size: clamp(2.2rem, 8vw, 3rem) !important;
           }
           .about-p {
-            font-size: 0.94rem !important;
+            font-size: 0.92rem !important;
             line-height: 1.65 !important;
           }
           .about-btn-primary, .about-btn-secondary {
             width: 100%;
             justify-content: center;
+          }
+          .status-badge {
+            font-size: 0.72rem !important;
+            padding: 5px 10px !important;
+          }
+        }
+
+        /* Responsive Small Mobile (max-width: 380px) */
+        @media (max-width: 380px) {
+          .about-section-container {
+            padding: 50px 0 !important;
+          }
+          .about-headline {
+            font-size: 2rem !important;
+          }
+          .about-p {
+            font-size: 0.88rem !important;
+          }
+          .status-badge {
+            width: 100%;
+            justify-content: flex-start;
           }
         }
       `}</style>
