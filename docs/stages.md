@@ -271,13 +271,33 @@ sebagai nilai dalam `:root` yang tidak digunakan), dan var mati `--font-script` 
 
 ---
 
-## Stage 6 — UX desktop & mobile (P2)
+## Stage 6 — UX desktop & mobile ✅ (commit `bd604e1`, `bda9e5f`)
 
-- Fail: `components/Navbar.tsx` — nav nampak pada ≥1024px (sekarang hamburger walaupun 1440px)
-- Fail: `components/Hero.tsx` — satu baris positioning: siapa / buat apa / status
-- Fail: `components/Hero.tsx` — label "let's connect" jangan rapat tepi pada 390px
-- Fail: casing label seragam (`About Me`, `Background`, `Experience`, `Contact`)
-- Bukti: screenshot 1440 + 390; `document.body.scrollHeight` (sekarang 11,309px)
+- Fail: `components/Hero.tsx` — italic "portfolio" duduk **atas** wordmark (dirender "adamporfolioman",
+  dua-dua tak boleh dibaca) → kini di bawah wordmark, rotate −5°, warna hitam
+- Fail: `components/Hero.tsx` — tiada satu baris positioning → tambah
+  "Computer science student · builds web apps, ML models and 3D / Open to internship"
+- Fail: `components/Hero.tsx` — pada 390px label "let's connect" terpotong tepi kanan dan label folder
+  bertindih pill bawah → folder bawah dinaikkan ke 126px, inset 22px, label `max-width: 40vw`
+- Fail: `components/Navbar.tsx` — hamburger pada 1440px → nav pill ABOUT / BACKGROUND / WORK / CONTACT
+  pada ≥1024px, hamburger disembunyi di situ dan kekal di bawah 1024px
+
+**Bukti (Chrome headless melalui CDP sendiri, prod build + live):**
+- Desktop 1440: `navDisplay=flex`, `hamburgerDisplay=none`, `overflowX=0`,
+  link = `About=>#about, Background=>#background, Work=>#projects, Contact=>#contact`
+- Mobile 390: `navDisplay=none`, `hamburger=block`, `overflowX=0`, label kanan = 368px (viewport 390),
+  tinggi page 10,496px
+- Screenshot 1440: wordmark "adamnaeman" jelas, "portfolio" italic di bawah, positioning line, pill nav
+- Screenshot 390: semua label dalam viewport, tiada pertindihan dengan pill bawah
+- Live selepas deploy: `navbar-desktop-link` hadir, `hero-positioning` hadir, "Open to internship" ada
+
+**Insiden:** semasa kerja, `components/Hero.tsx` dan `components/Navbar.tsx` dipulihkan ke HEAD oleh
+profil Hermes lain (`adamnaeman`) yang commit ke working tree sama — kerja belum commit hilang sekali.
+Re-apply dan commit serta-merta; dua commit di atas ialah hasil akhir. `app/layout.tsx` + `app/globals.css`
+dalam working tree sekarang milik agent itu (tambah balik Plus Jakarta Sans, Permanent Marker, Poppins 500),
+bukan commit ini.
+
+**Tidak dibuat:** casing label ("about me" lowercase vs nav pill uppercase) — itu keputusan visual, bukan bug.
 
 ---
 
