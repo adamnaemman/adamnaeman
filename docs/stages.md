@@ -271,33 +271,46 @@ sebagai nilai dalam `:root` yang tidak digunakan), dan var mati `--font-script` 
 
 ---
 
-## Stage 6 — UX desktop & mobile ✅ (commit `bd604e1`, `bda9e5f`)
+## Stage 6 — UX desktop & mobile ✅ (commit `bd604e1`, `bda9e5f`, `4d6aa4f`)
 
 - Fail: `components/Hero.tsx` — italic "portfolio" duduk **atas** wordmark (dirender "adamporfolioman",
   dua-dua tak boleh dibaca) → kini di bawah wordmark, rotate −5°, warna hitam
 - Fail: `components/Hero.tsx` — tiada satu baris positioning → tambah
-  "Computer science student · builds web apps, ML models and 3D / Open to internship"
+  "CS (AI) undergrad at IIUM · edge-IoT and ML systems / FYP BagSense · in progress"
+  (`hero-positioning`, mono uppercase, `max-width: 60ch`)
 - Fail: `components/Hero.tsx` — pada 390px label "let's connect" terpotong tepi kanan dan label folder
   bertindih pill bawah → folder bawah dinaikkan ke 126px, inset 22px, label `max-width: 40vw`
-- Fail: `components/Navbar.tsx` — hamburger pada 1440px → nav pill ABOUT / BACKGROUND / WORK / CONTACT
-  pada ≥1024px, hamburger disembunyi di situ dan kekal di bawah 1024px
+- Fail: `components/Navbar.tsx` — hamburger pada 1440px → nav pill ABOUT / BACKGROUND / **PROJECTS** +
+  CTA hitam **LET'S CONNECT** (`#contact`) pada ≥1024px; hamburger `display:none` di situ dan kekal
+  di bawah 1024px. Label desktop disamakan dengan menu mobile (dulu `Work` + `Contact` berasingan)
+- Fail: `components/Navbar.tsx` — `<style jsx>` pada client component hanya di-inject **selepas
+  hydration** → nav desktop sempat dirender sebagai link biru tanpa gaya dan hamburger sempat nampak.
+  Tukar ke `<style>` biasa (masuk SSR HTML): peralihan tampil sebelum paint
 
-**Bukti (Chrome headless melalui CDP sendiri, prod build + live):**
-- Desktop 1440: `navDisplay=flex`, `hamburgerDisplay=none`, `overflowX=0`,
-  link = `About=>#about, Background=>#background, Work=>#projects, Contact=>#contact`
-- Mobile 390: `navDisplay=none`, `hamburger=block`, `overflowX=0`, label kanan = 368px (viewport 390),
-  tinggi page 10,496px
-- Screenshot 1440: wordmark "adamnaeman" jelas, "portfolio" italic di bawah, positioning line, pill nav
-- Screenshot 390: semua label dalam viewport, tiada pertindihan dengan pill bawah
-- Live selepas deploy: `navbar-desktop-link` hadir, `hero-positioning` hadir, "Open to internship" ada
+**Bukti (Chrome headless melalui CDP, prod build `next start -p 3112`, tree = `4d6aa4f`):**
+- `npx tsc --noEmit` → exit 0, **0 baris output**
+- `npm run build` → Compiled successfully, 0 warning; `/` 42.3 kB / First Load 130 kB
+- 1440×900: `document.body.scrollHeight` **6907px** — baseline `5755493` juga **6907px** (tiada page
+  growth); `navDisplay=flex`, `hamburgerDisplay=none`, panel mobile tiada dalam DOM;
+  nav = `About=>#about`, `Background=>#background`, `Projects=>#projects`, `Let's Connect=>#contact`;
+  `scrollWidth 1430 ≤ innerWidth 1440` → overflow 0; **CLS 0.0085** (sebelum guna SSR `<style>`: 0.0635)
+- 390×844: `body.scrollHeight` **10496px** — baseline juga **10496px**; `navDisplay=none`,
+  `hamburgerDisplay=block`, `scrollWidth 390 = innerWidth` → overflow 0; **CLS 0**;
+  label "let's connect" jarak tepi kanan **22px** (baseline 12px); menu mobile dibuka →
+  panel hadir dengan ABOUT / BACKGROUND / PROJECTS / LET'S CONNECT
+- Screenshot (bukti, bukan aset web): `docs/screenshots/stage6/1440-home.png`, `1440-nav.png`,
+  `390-home.png`, `390-nav.png` (dilihat sendiri: pill nav + CTA pada 1440 tanpa hamburger; pada 390
+  hanya hamburger, label dalam viewport, menu buka penuh)
+- Server ujian `next start -p 3112` ditutup selepas ukuran (PID dilapor dalam jawapan)
 
-**Insiden:** semasa kerja, `components/Hero.tsx` dan `components/Navbar.tsx` dipulihkan ke HEAD oleh
-profil Hermes lain (`adamnaeman`) yang commit ke working tree sama — kerja belum commit hilang sekali.
-Re-apply dan commit serta-merta; dua commit di atas ialah hasil akhir. `app/layout.tsx` + `app/globals.css`
-dalam working tree sekarang milik agent itu (tambah balik Plus Jakarta Sans, Permanent Marker, Poppins 500),
-bukan commit ini.
+**Insiden:** `components/Navbar.tsx` dan `components/Hero.tsx` dipulihkan ke HEAD **tiga kali** oleh
+profil Hermes lain (`adamnaeman`) yang commit ke working tree sama; setiap kali kerja belum commit hilang.
+Penyelesaian: apply berskrip (idempotent, CRLF-safe), terus `tsc` + build + ukur + commit dalam tetingkap
+pendek. Commit `4d6aa4f` di atas ialah keadaan akhir Stage 6. Sesi itu juga sudah mula Stage 7
+(`83c07cd`, `ebc46a7`) — di luar skop kerja ini.
 
-**Tidak dibuat:** casing label ("about me" lowercase vs nav pill uppercase) — itu keputusan visual, bukan bug.
+**Tidak dibuat:** casing pill kicker/headline section (`about me` lowercase lawan pill uppercase) —
+keputusan visual, bukan bug; nav desktop + menu mobile kini guna set label yang sama.
 
 ---
 
