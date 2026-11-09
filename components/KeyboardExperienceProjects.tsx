@@ -20,20 +20,19 @@ interface SkillKey {
 }
 
 const SKILL_KEYS: SkillKey[] = [
-  // ROW 1
   {
     id: 'nextjs',
     name: 'Next.js 14',
     code: 'N',
-    badge: 'FULL STACK',
-    quote: "Why render on the client when edge server components can stream HTML in 20ms?",
-    experienceChapter: '2024 - PRESENT',
-    experienceRole: 'Full Stack & Cloud Developer @ Independent Labs',
-    experienceDetails: 'Architecting dynamic server-component frontends with sub-second LCP and streaming edge API routes.',
-    projectId: '1',
+    badge: 'THIS SITE',
+    quote: "The portfolio is one Next.js app that compiles to plain HTML — no server sitting behind it.",
+    experienceChapter: 'NOW',
+    experienceRole: 'This portfolio — Next.js 14 App Router',
+    experienceDetails: 'Static prerender, TypeScript strict, zero API routes: 131 kB first load, deployed from GitHub to Vercel.',
+    projectId: 'portfolio',
     renderIcon: () => (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 13.5l-4-5.5V15H5V8h1.5l4 5.5V8H12v7h-1.5zm5.5 0h-1.5V8H16v7z" />
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 20V4l12 16h4V4" />
       </svg>
     ),
   },
@@ -42,16 +41,15 @@ const SKILL_KEYS: SkillKey[] = [
     name: 'TypeScript',
     code: 'T',
     badge: 'TYPE SAFETY',
-    quote: "JavaScript with trust issues, but caught 99% of my runtime bugs before production.",
-    experienceChapter: '2024 - PRESENT',
-    experienceRole: 'Full Stack & Cloud Developer @ Independent Labs',
-    experienceDetails: 'Strict end-to-end type contracts from database schema to UI components with zero any-casting.',
-    projectId: '1',
+    quote: "Types keep the projects, timeline and stats in one file instead of three copies drifting apart.",
+    experienceChapter: 'NOW',
+    experienceRole: 'This portfolio — strict TypeScript',
+    experienceDetails: 'One typed source of truth feeds the project cards, the timeline and the keyboard cards; tsc --noEmit is a build gate.',
+    projectId: 'portfolio',
     renderIcon: () => (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="18" height="18" rx="3" fill="none" />
-        <path d="M7 8h6M10 8v8" />
-        <path d="M14 14.5c.5.5 1.2.8 2 .8 1.1 0 1.8-.6 1.8-1.4 0-1.8-3.6-.9-3.6-2.9 0-.8.7-1.5 1.8-1.5.8 0 1.4.3 1.9.8" />
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 6h9M8.5 6v13" />
+        <path d="M20 8.5c-.9-.8-2-1.2-3.1-1.2-1.7 0-2.9.9-2.9 2.2 0 1.4 1.3 1.9 2.9 2.4 1.7.5 3 1.1 3 2.6 0 1.5-1.4 2.5-3.2 2.5-1.3 0-2.5-.4-3.4-1.2" />
       </svg>
     ),
   },
@@ -59,337 +57,206 @@ const SKILL_KEYS: SkillKey[] = [
     id: 'react',
     name: 'React 19',
     code: 'R',
-    badge: 'UI ARCHITECTURE',
-    quote: "Components all the way down. The heartbeat and nervous system of modern web interfaces.",
-    experienceChapter: '2022 - 2024',
-    experienceRole: 'Frontend & UI Systems Engineer @ Digital Innovation Studios',
-    experienceDetails: 'Engineered modular design systems, accessible UI interactions, and high-frequency state synchronizers.',
-    projectId: '3',
-    renderIcon: () => (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)" />
-        <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
-        <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
-        <circle cx="12" cy="12" r="2" fill="currentColor" />
-      </svg>
-    ),
-  },
-  {
-    id: 'nodejs',
-    name: 'Node.js',
-    code: 'O',
-    badge: 'RUNTIME & APIS',
-    quote: "JavaScript said 'sike, I'm backend now', deadass!",
-    experienceChapter: '2024 - PRESENT',
-    experienceRole: 'Backend & Cloud Engineer @ High Growth Labs',
-    experienceDetails: 'High-throughput event-driven microservices processing edge telemetry with minimal event loop latency.',
-    projectId: '2',
+    badge: 'UI',
+    quote: "React 19 with Vite for the paddy disease app — image in, prediction and explanation out.",
+    experienceChapter: 'COURSEWORK',
+    experienceRole: 'Paddy disease app — React 19 + Vite',
+    experienceDetails: 'Upload a leaf photo, get the class prediction, with Firebase for storage and Gemini writing the explanation.',
+    projectId: 'paddy',
     renderIcon: () => (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2l8 4.6v9.2l-8 4.6-8-4.6V6.6L12 2z" />
-        <path d="M12 6.5l5 2.8v5.6l-5 2.8-5-2.8V9.3l5-2.8z" />
-      </svg>
-    ),
-  },
-  {
-    id: 'supabase',
-    name: 'Supabase & SQL',
-    code: 'S',
-    badge: 'REALTIME DB',
-    quote: "Postgres superpowers, instant Row Level Security, and realtime websockets without the DevOps headache.",
-    experienceChapter: '2024 - PRESENT',
-    experienceRole: 'Full Stack & Cloud Developer @ Independent Labs',
-    experienceDetails: 'Multi-tenant database architectures with automated RLS policies and live presence channels.',
-    projectId: '4',
-    renderIcon: () => (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M13.2 2.2a1 1 0 0 0-1.5.3L4.2 13a1 1 0 0 0 .8 1.6h5.8L9.2 21.6a1 1 0 0 0 1.6.8l7.5-10.5a1 1 0 0 0-.8-1.6h-5.8l1.5-8.1z" />
-      </svg>
-    ),
-  },
-
-  // ROW 2
-  {
-    id: 'gcp',
-    name: 'Google Cloud (GCP)',
-    code: 'G',
-    badge: 'CLOUD & INFRA',
-    quote: "Serverless containers, BigQuery pipelines, and autoscaling edge compute that let me sleep at night.",
-    experienceChapter: '2024 - PRESENT',
-    experienceRole: 'Cloud Solutions Engineer @ Independent Labs',
-    experienceDetails: 'Deployed zero-maintenance serverless microservices with automated IAM least-privilege security.',
-    projectId: '1',
-    renderIcon: () => (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z" />
-        <circle cx="12" cy="13" r="1.5" fill="currentColor" />
-      </svg>
-    ),
-  },
-  {
-    id: 'docker',
-    name: 'Docker',
-    code: 'D',
-    badge: 'CONTAINERS',
-    quote: "It works on my machine... and now it works reliably on every single container in the cluster.",
-    experienceChapter: '2023 - PRESENT',
-    experienceRole: 'DevOps & Systems Lead @ Independent Labs',
-    experienceDetails: 'Multi-stage Docker builds optimized for minimal image footprint and fast CI/CD pipeline pushes.',
-    projectId: '2',
-    renderIcon: () => (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M4 14h16c0 3.5-3 6-8 6s-8-2.5-8-6z" />
-        <path d="M2 14c0-1.5 1-2.5 2-2.5" />
-        <rect x="7" y="10" width="2.5" height="2.5" />
-        <rect x="10.5" y="10" width="2.5" height="2.5" />
-        <rect x="14" y="10" width="2.5" height="2.5" />
-        <rect x="10.5" y="7" width="2.5" height="2.5" />
-      </svg>
-    ),
-  },
-  {
-    id: 'tailwind',
-    name: 'Tailwind CSS',
-    code: 'W',
-    badge: 'STYLING & MOTION',
-    quote: "Writing custom bespoke styling faster than the speed of light without ever leaving the component markup.",
-    experienceChapter: '2022 - 2024',
-    experienceRole: 'Frontend & UI Systems Engineer @ Digital Innovation Studios',
-    experienceDetails: 'Crafted design token architectures with responsive dark-mode palettes and fluid animations.',
-    projectId: '3',
-    renderIcon: () => (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 6c-2.7 0-4.3 1.3-5 4 1-1.3 2.2-1.9 3.5-1.6 1 .2 1.7 1 2.5 1.8 1.3 1.3 2.8 2.8 6 2.8 2.7 0 4.3-1.3 5-4-1 1.3-2.2 1.9-3.5 1.6-1-.2-1.7-1-2.5-1.8C16.7 7.5 15.2 6 12 6zM5 13c-2.7 0-4.3 1.3-5 4 1-1.3 2.2-1.9 3.5-1.6 1 .2 1.7 1 2.5 1.8C7.3 18.5 8.8 20 12 20c2.7 0 4.3-1.3 5-4-1 1.3-2.2 1.9-3.5 1.6-1-.2-1.7-1-2.5-1.8-1.3-1.3-2.8-2.8-6-2.8z" />
-      </svg>
-    ),
-  },
-  {
-    id: 'threejs',
-    name: 'Three.js & 2.5D',
-    code: '3',
-    badge: '3D GRAPHICS',
-    quote: "Who said web pages have to be flat? Let's bend space, shaders, and tactile dioramas in the viewport.",
-    experienceChapter: '2024 - PRESENT',
-    experienceRole: 'Creative Technologist & Visual Web Experiments',
-    experienceDetails: 'Crafting procedural 3D dioramas, interactive canvas WebGL shaders, and audio-reactive scenes.',
-    projectId: '3',
-    renderIcon: () => (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <polygon points="12 3 2 20 22 20" />
-        <line x1="12" y1="3" x2="12" y2="20" />
-        <line x1="2" y1="20" x2="17" y2="11.5" />
-        <line x1="22" y1="20" x2="7" y2="11.5" />
+        <circle cx="12" cy="12" r="2" />
+        <ellipse cx="12" cy="12" rx="10" ry="4.5" />
+        <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(60 12 12)" />
+        <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(120 12 12)" />
       </svg>
     ),
   },
   {
     id: 'python',
-    name: 'Python & AI',
+    name: 'Python',
     code: 'P',
-    badge: 'AI & PIPELINES',
-    quote: "Three lines of code to summon neural embeddings, scrape telemetry, and transform massive datasets.",
-    experienceChapter: '2023 - 2024',
-    experienceRole: 'Data & Automation Specialist @ Independent Labs',
-    experienceDetails: 'Built automated analytics processors and LLM feature pipelines with FastAPI and Pandas.',
-    projectId: '1',
+    badge: 'SCRIPTING & ML',
+    quote: "Python is where the 3D modelling, the ML training and the small automation scripts all live.",
+    experienceChapter: 'ONGOING',
+    experienceRole: 'BagSense — Blender scripting; ML coursework',
+    experienceDetails: 'Headless Blender scripts for the bag geometry, data preparation for the classifiers, and the command-line tools around both.',
+    projectId: 'bagsense',
     renderIcon: () => (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2H8a4 4 0 0 0-4 4v3a2 2 0 0 0 2 2h6v2H6a4 4 0 0 0-4 4v3a2 2 0 0 0 2 2h4" />
-        <path d="M12 22h4a4 4 0 0 0 4-4v-3a2 2 0 0 0-2-2h-6v-2h6a4 4 0 0 0 4-4V4a2 2 0 0 0-2-2h-4" />
-        <circle cx="7" cy="6" r="1" fill="currentColor" />
-        <circle cx="17" cy="18" r="1" fill="currentColor" />
+        <path d="M12 3c-3.5 0-3.5 1.6-3.5 3v2h7v1H6.5C4.6 9 3 10.2 3 13.5S4.6 18 6.5 18H8v-2.2c0-2 1.6-3.3 3.5-3.3h4c1.7 0 3-1.3 3-3V6c0-1.4-1.3-3-3-3h-3.5z" />
+        <circle cx="9.5" cy="5.5" r="0.9" fill="currentColor" stroke="none" />
       </svg>
     ),
   },
-
-  // ROW 3
   {
-    id: 'postgres',
-    name: 'PostgreSQL',
-    code: 'E',
-    badge: 'RELATIONAL DB',
-    quote: "The bedrock of relational integrity and ACID compliance. Bulletproof data resilience since 1996.",
-    experienceChapter: '2024 - PRESENT',
-    experienceRole: 'Full Stack & Cloud Developer @ Independent Labs',
-    experienceDetails: 'Query plan optimization, custom indexing (GIN/BTREE), and foreign-key constraints at scale.',
-    projectId: '1',
+    id: 'pytorch',
+    name: 'PyTorch',
+    code: 'Y',
+    badge: 'DEEP LEARNING',
+    quote: "Two encoders, one gated fusion block — the DGCA reimplementation is plain PyTorch, no wrappers.",
+    experienceChapter: 'COURSEWORK',
+    experienceRole: 'DGCA meme sentiment — PyTorch',
+    experienceDetails: 'BERT and ResNet50 encoders feed dimension-wise gated cross-attention; Grad-CAM and gating plots for inspection.',
+    projectId: 'dgca',
     renderIcon: () => (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <ellipse cx="12" cy="6" rx="8" ry="3" />
-        <path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6" />
-        <path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" />
+        <path d="M20 12a8 8 0 1 1-3.2-6.4" />
+        <path d="M16.8 5.6 20 2.8V7" />
+        <circle cx="12" cy="12" r="2.4" />
       </svg>
     ),
   },
   {
-    id: 'figma',
-    name: 'Figma',
-    code: 'F',
-    badge: 'DESIGN SYSTEMS',
-    quote: "Where brutalist wireframes and fluid design tokens ignite before the first div is written in code.",
-    experienceChapter: '2022 - 2024',
-    experienceRole: 'Frontend & UI Systems Engineer @ Digital Innovation Studios',
-    experienceDetails: 'Spearheaded comprehensive UI kits with auto-layout variants, interactive prototypes, and token exports.',
-    projectId: '3',
-    renderIcon: () => (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z" />
-        <path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z" />
-        <path d="M12 9v6h3.5a3.5 3.5 0 1 0 0-7H12z" />
-        <path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v6H8.5A3.5 3.5 0 0 1 5 12.5z" />
-        <path d="M8.5 16H12v2.5A3.5 3.5 0 1 1 8.5 16z" />
-      </svg>
-    ),
-  },
-  {
-    id: 'git',
-    name: 'Git & CI/CD',
-    code: 'I',
-    badge: 'VERSION CONTROL',
-    quote: "git commit -m 'fixed that bug finally' // commit history never lies, automated pipelines deploy.",
-    experienceChapter: '2022 - PRESENT',
-    experienceRole: 'Software Engineer @ Independent Labs',
-    experienceDetails: 'Automated GitHub Actions CI/CD workflows with automated linting, unit tests, and production releases.',
-    projectId: '2',
-    renderIcon: () => (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="6" cy="6" r="2.5" />
-        <circle cx="18" cy="9" r="2.5" />
-        <circle cx="6" cy="18" r="2.5" />
-        <line x1="6" y1="8.5" x2="6" y2="15.5" />
-        <path d="M6 18c4 0 7-3 7-6V9" />
-        <line x1="13" y1="9" x2="15.5" y2="9" />
-      </svg>
-    ),
-  },
-  {
-    id: 'graphql',
-    name: 'GraphQL',
-    code: 'Q',
-    badge: 'API QUERYING',
-    quote: "Ask for what you want, get exactly what you need. Goodbye over-fetching and multi-roundtrip latency.",
-    experienceChapter: '2023 - 2024',
-    experienceRole: 'Full Stack Engineer @ Independent Labs',
-    experienceDetails: 'Designed strongly-typed GraphQL schemas with custom resolvers, dataloaders, and WebSocket subscriptions.',
-    projectId: '2',
-    renderIcon: () => (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <polygon points="12 2 20.66 7 20.66 17 12 22 3.34 17 3.34 7" />
-        <circle cx="12" cy="2" r="1.5" fill="currentColor" />
-        <circle cx="20.66" cy="7" r="1.5" fill="currentColor" />
-        <circle cx="20.66" cy="17" r="1.5" fill="currentColor" />
-        <circle cx="12" cy="22" r="1.5" fill="currentColor" />
-        <circle cx="3.34" cy="17" r="1.5" fill="currentColor" />
-        <circle cx="3.34" cy="7" r="1.5" fill="currentColor" />
-        <line x1="12" y1="2" x2="12" y2="22" />
-        <line x1="3.34" y1="7" x2="20.66" y2="17" />
-        <line x1="3.34" y1="17" x2="20.66" y2="7" />
-      </svg>
-    ),
-  },
-  {
-    id: 'rust',
-    name: 'Rust Systems',
-    code: 'U',
-    badge: 'HIGH PERF',
-    quote: "Fearless concurrency and blazing memory safety. Zero garbage collection stutter under peak load.",
-    experienceChapter: '2024 - PRESENT',
-    experienceRole: 'Systems & Cryptography Engineer @ Independent Labs',
-    experienceDetails: 'Engineered high-throughput proof verification daemons and memory-efficient binary parsers.',
-    projectId: '2',
-    renderIcon: () => (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="12" cy="12" r="8" />
-        <path d="M10 8h3a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-3v4" />
-        <path d="M13 12l3 4" />
-      </svg>
-    ),
-  },
-
-  // ROW 4
-  {
-    id: 'javascript',
-    name: 'JavaScript ESNext',
-    code: 'J',
-    badge: 'CORE ENGINE',
-    quote: "The engine that powers the world. From tiny micro-animations to massive cloud runtimes.",
-    experienceChapter: '2022 - PRESENT',
-    experienceRole: 'Full Stack & Frontend Craftsman @ Independent Labs',
-    experienceDetails: 'Deep mastery of event-loops, asynchronous microtasks, Web APIs, and functional paradigms.',
-    projectId: '4',
-    renderIcon: () => (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="18" height="18" rx="3" fill="none" />
-        <path d="M8 13.5v2.5c0 .6-.4 1-1 1H6" />
-        <path d="M12.5 16.5c1.2.6 2.5.4 3-.2.6-.7.1-1.6-1.5-2.2-1.6-.6-2.1-1.5-1.5-2.2.6-.6 2-.8 3-.2" />
-      </svg>
-    ),
-  },
-  {
-    id: 'html5',
-    name: 'HTML5 Semantic',
-    code: '5',
-    badge: 'SEMANTICS',
-    quote: "The structural skeleton of the web. Accessible, clean, and meaningful hierarchy.",
-    experienceChapter: '2022 - PRESENT',
-    experienceRole: 'Frontend Craftsman @ Digital Innovation Studios',
-    experienceDetails: 'ARIA-compliant markup, semantic structure, and accessible web standards across all browsers.',
-    projectId: '3',
-    renderIcon: () => (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M4 3l1.8 15.5L12 21l6.2-2.5L20 3H4z" />
-        <path d="M8 7h8l-.5 4H8.5l.3 3 3.2.9 3.2-.9.2-2" />
-      </svg>
-    ),
-  },
-  {
-    id: 'css3',
-    name: 'CSS3 Architecture',
-    code: 'C',
-    badge: 'DESIGN ENGINE',
-    quote: "Cascading style sheets tuned with fluid math, container queries, and sub-pixel perfection.",
-    experienceChapter: '2022 - 2024',
-    experienceRole: 'Frontend & UI Systems Engineer @ Digital Innovation Studios',
-    experienceDetails: 'Complex 3D transforms, fluid typography, responsive layout engines, and hardware acceleration.',
-    projectId: '3',
-    renderIcon: () => (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M4 3l1.8 15.5L12 21l6.2-2.5L20 3H4z" />
-        <path d="M15.5 7H8.5l.4 3.5h6.6l-.6 5-2.9.8-2.9-.8-.2-2" />
-      </svg>
-    ),
-  },
-  {
-    id: 'terminal',
-    name: 'Bash & Terminal',
+    id: 'blender',
+    name: 'Blender',
     code: 'B',
-    badge: 'CLI POWER',
-    quote: "Where commands fly at the speed of thought. Piping stdout into pure engineering triumph.",
-    experienceChapter: '2022 - PRESENT',
-    experienceRole: 'DevOps & Systems Lead @ Independent Labs',
-    experienceDetails: 'Zsh shell scripting, ssh tunneling, system telemetry monitoring, and server automation.',
-    projectId: '2',
+    badge: '3D MODELLING',
+    quote: "One dimension dictionary, whole bag rebuilt — that is the point of modelling it parametrically.",
+    experienceChapter: 'ONGOING',
+    experienceRole: 'BagSense — parametric Blender model',
+    experienceDetails: 'Headless bpy build: panels, roll-top, straps and buckles all derived from width, depth, height and strap values, then rendered per view.',
+    projectId: 'bagsense',
     renderIcon: () => (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="4 17 10 11 4 5" />
-        <line x1="12" y1="19" x2="20" y2="19" />
+        <path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7L12 2.5z" />
+        <path d="M12 21.5V12M3.5 7 12 12l8.5-5" />
       </svg>
     ),
   },
   {
-    id: 'cms',
-    name: 'Headless CMS',
-    code: 'H',
-    badge: 'CONTENT OPS',
-    quote: "Decoupled content APIs delivering structured JSON to edge frontends in milliseconds.",
-    experienceChapter: '2023 - 2024',
-    experienceRole: 'Full Stack Engineer @ Independent Labs',
-    experienceDetails: 'Headless CMS schemas, real-time draft previews, and static incremental revalidation (ISR).',
-    projectId: '3',
+    id: 'godot',
+    name: 'Godot 4.6',
+    code: 'G',
+    badge: 'GAME ENGINE',
+    quote: "A Blender town imported as one glTF scene, then walked around in Godot.",
+    experienceChapter: 'PROTOTYPE',
+    experienceRole: 'Cozy Garden Town — Godot 4.6.2',
+    experienceDetails: 'Town mesh with 1,142 objects, top-down player controller, three or four NPCs, no combat — deliberately small scope.',
+    projectId: 'garden',
     renderIcon: () => (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="9" />
-        <path d="M8 9l2.5 7L13 9l2.5 7L18 9" />
+        <path d="M8 15.5c1-2 2.2-3 4-3s3 1 4 3" />
+        <circle cx="9" cy="9.5" r="1" fill="currentColor" stroke="none" />
+        <circle cx="15" cy="9.5" r="1" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
+  {
+    id: 'gdscript',
+    name: 'GDScript',
+    code: 'D',
+    badge: 'GAME LOGIC',
+    quote: "Scripts are kept testable: a headless scene proves movement before anything is called done.",
+    experienceChapter: 'PROTOTYPE',
+    experienceRole: 'Cozy Garden Town — GDScript',
+    experienceDetails: 'Player movement, camera and interaction; a headless self-test scene checks behaviour without opening the editor.',
+    projectId: 'garden',
+    renderIcon: () => (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 5l8 4 8-4v14l-8-4-8 4z" />
+        <path d="M12 9v10" />
+      </svg>
+    ),
+  },
+  {
+    id: 'esp32',
+    name: 'ESP32 & C++',
+    code: 'E',
+    badge: 'EMBEDDED',
+    quote: "Five sensors in, two speed values out — the PID loop runs every cycle on the board.",
+    experienceChapter: 'HARDWARE',
+    experienceRole: 'TimeRush — ESP32 line follower',
+    experienceDetails: 'Five IR sensors produce a line error, Kp 14 / Kd 10 turn it into left/right ESC output, clamped to the ESC neutral point.',
+    projectId: 'timerush',
+    renderIcon: () => (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="7" y="7" width="10" height="10" rx="1.5" />
+        <path d="M10 7V4M14 7V4M10 20v-3M14 20v-3M7 10H4M7 14H4M20 10h-3M20 14h-3" />
+      </svg>
+    ),
+  },
+  {
+    id: 'firebase',
+    name: 'Firebase',
+    code: 'F',
+    badge: 'APP SERVICES',
+    quote: "Storage and plumbing for the paddy app, kept behind the front end so the UI stays simple.",
+    experienceChapter: 'COURSEWORK',
+    experienceRole: 'Paddy disease app — Firebase',
+    experienceDetails: 'Handles the app-side storage the React front end needs so the classifier stays a pure function of the uploaded image.',
+    projectId: 'paddy',
+    renderIcon: () => (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 3c3 4.2 5 6.9 5 9.6A5 5 0 0 1 7 12.6C7 9.9 9 7.2 12 3z" />
+        <path d="M12 21c-2.4-1.9-3.6-3.7-3.6-5.4" />
+      </svg>
+    ),
+  },
+  {
+    id: 'gemini',
+    name: 'Gemini API',
+    code: 'A',
+    badge: 'EXPLANATION LAYER',
+    quote: "The model says which disease; Gemini says what that means in a sentence a farmer can read.",
+    experienceChapter: 'COURSEWORK',
+    experienceRole: 'Paddy disease app — Gemini API',
+    experienceDetails: 'Wraps the classifier output in a plain-language explanation using @google/generative-ai from the front end.',
+    projectId: 'paddy',
+    renderIcon: () => (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 3l2.2 5.6L20 11l-5.8 2.4L12 19l-2.2-5.6L4 11l5.8-2.4z" />
+      </svg>
+    ),
+  },
+  {
+    id: 'vite',
+    name: 'Vite',
+    code: 'V',
+    badge: 'BUILD TOOLING',
+    quote: "Fast rebuilds, plain ES modules, a bundle small enough that the whole app is a static file.",
+    experienceChapter: 'COURSEWORK',
+    experienceRole: 'Paddy disease app — Vite',
+    experienceDetails: 'Dev server and production bundle for the React 19 app; output is a static dist folder, no server process.',
+    projectId: 'paddy',
+    renderIcon: () => (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M13 2 4.5 13.5H10l-1 8.5L20 10h-5.5L13 2z" />
+      </svg>
+    ),
+  },
+  {
+    id: 'css',
+    name: 'CSS Architecture',
+    code: 'C',
+    badge: 'STYLING',
+    quote: "Design tokens in globals.css, layout per section — no UI framework anywhere in this build.",
+    experienceChapter: 'NOW',
+    experienceRole: 'This portfolio — plain CSS',
+    experienceDetails: 'Colour, type and spacing tokens declared once, then used inline; every section keeps its own responsive rules instead of a utility soup.',
+    projectId: 'portfolio',
+    renderIcon: () => (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 5h16l-1.6 14H5.6L4 5z" />
+        <path d="M8 9h8M8.5 13h7" />
+      </svg>
+    ),
+  },
+  {
+    id: 'html',
+    name: 'Semantic HTML',
+    code: 'H',
+    badge: 'STRUCTURE',
+    quote: "One h1, real sections with ids, labelled controls — the page does not rely on div soup to navigate.",
+    experienceChapter: 'NOW',
+    experienceRole: 'This portfolio — structure & accessibility',
+    experienceDetails: 'Sections carry ids for in-page navigation, buttons and links carry labels, and the document has a single owning heading.',
+    projectId: 'portfolio',
+    renderIcon: () => (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 5h16l-1.6 14H5.6L4 5z" />
+        <path d="M9 9.5v7M15 9.5v7M9 12.8h6" />
       </svg>
     ),
   },
@@ -660,7 +527,7 @@ export default function KeyboardExperienceProjects() {
                   <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#edeef2', border: '1px solid #000000', display: 'inline-block' }} />
                   <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ffffff', border: '1px solid #000000', display: 'inline-block' }} />
                 </div>
-                <span className="kb-model-label-bw">ADAM.MK // 20-KEY MECHANICAL ORTHO</span>
+                <span className="kb-model-label-bw">ADAM.MK // 14-KEY MECHANICAL ORTHO</span>
                 <span style={{ fontSize: '0.62rem', fontWeight: 800, color: '#000000' }}>● ALL SKILLS LOADED</span>
               </div>
 

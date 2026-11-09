@@ -18,130 +18,11 @@ import {
   ExternalLink
 } from 'lucide-react';
 
-interface TimelineItem {
-  id: string;
-  period: string;
-  role: string;
-  company: string;
-  location: string;
-  badge: string;
-  description: string;
-  achievements: string[];
-  techStack: string[];
-}
-
-interface Certification {
-  id: string;
-  name: string;
-  issuer: string;
-  date: string;
-  verificationBadge: string;
-  description: string;
-}
-
-const TIMELINE_DATA: TimelineItem[] = [
-  {
-    id: 'timeline-1',
-    period: '2024 — PRESENT',
-    role: 'Lead Full Stack & Cloud Developer',
-    company: 'Independent Creative Labs & Digital Ventures',
-    location: 'Kuala Lumpur // Remote Worldwide',
-    badge: 'ACTIVE ROLE',
-    description: 'Spearheading end-to-end web architectures, high-performance edge applications, and real-time database backends engineered for massive concurrency.',
-    achievements: [
-      'Architected edge-first Next.js 14 applications achieving sub-second Largest Contentful Paint (LCP) globally.',
-      'Engineered real-time collaboration backends with Supabase, PostgreSQL Row-Level Security, and WebSocket event channels.',
-      'Designed interactive 2.5D WebGL and tactile UI systems that increased user session duration by over 65%.'
-    ],
-    techStack: ['Next.js 14', 'TypeScript', 'Supabase', 'PostgreSQL', 'Google Cloud Platform', 'Tailwind CSS']
-  },
-  {
-    id: 'timeline-2',
-    period: '2023 — 2024',
-    role: 'Cloud Infrastructure & Backend Engineer',
-    company: 'CloudScale Technologies',
-    location: 'Hybrid / Remote',
-    badge: 'SYSTEMS SCALE',
-    description: 'Designed high-throughput REST and GraphQL APIs, streamlined microservice deployment workflows, and optimized cloud database queries.',
-    achievements: [
-      'Refactored relational query paths and implemented Redis caching, reducing p95 API response times by 42%.',
-      'Configured containerized deployments on Google Cloud Run with automated GitHub Actions CI/CD pipelines.',
-      'Maintained 99.98% production uptime SLA across critical customer-facing service endpoints.'
-    ],
-    techStack: ['Node.js', 'Docker', 'PostgreSQL', 'Redis', 'Google Cloud Run', 'GitHub Actions']
-  },
-  {
-    id: 'timeline-3',
-    period: '2022 — 2023',
-    role: 'Frontend & UI Systems Developer',
-    company: 'Digital Innovation Studios',
-    location: 'Kuala Lumpur',
-    badge: 'DESIGN SYSTEMS',
-    description: 'Built modular component libraries, accessible web interfaces, and fluid micro-interactions for modern web platforms.',
-    achievements: [
-      'Engineered a centralized component design system adopted across 6 client enterprise web applications.',
-      'Integrated Web Audio API and tactile sound synthesis for novel interactive product experiences.',
-      'Audited and elevated WCAG 2.1 AA accessibility compliance across core client landing portals.'
-    ],
-    techStack: ['React', 'TypeScript', 'CSS Architecture', 'Framer Motion', 'Web Audio API']
-  },
-  {
-    id: 'timeline-4',
-    period: '2021 — 2022',
-    role: 'Systems Explorer & Open Source Contributor',
-    company: 'Self-Directed & Open Source',
-    location: 'Autonomous',
-    badge: 'FOUNDATIONS',
-    description: 'Immersed in low-level systems programming, Linux terminal environments, database design theory, and experimental web graphics.',
-    achievements: [
-      'Built developer utility scripts in Bash and Node.js for automated local workspace orchestration.',
-      'Deepened mastery of algorithms, time-complexity analysis, and distributed systems architecture.'
-    ],
-    techStack: ['JavaScript', 'Bash / Shell', 'Git', 'SQL Internals', 'Linux Environments']
-  }
-];
-
-const CERTIFICATIONS_DATA: Certification[] = [
-  {
-    id: 'cert-1',
-    name: 'Google Cloud Platform — Architecture & Engineering',
-    issuer: 'Google Cloud Certified Foundations',
-    date: '2024',
-    verificationBadge: 'VERIFIED CREDENTIAL',
-    description: 'Mastery of Cloud Run serverless microservices, BigQuery analytics, IAM security protocols, and resilient infrastructure deployment.'
-  },
-  {
-    id: 'cert-2',
-    name: 'Enterprise TypeScript & Software Architecture',
-    issuer: 'Advanced Systems Academy',
-    date: '2023',
-    verificationBadge: 'VERIFIED CREDENTIAL',
-    description: 'Strict type contracts, generics meta-programming, API schema sharing, and zero-any production standards.'
-  },
-  {
-    id: 'cert-3',
-    name: 'High-Performance PostgreSQL & Database Engineering',
-    issuer: 'Database Systems Group',
-    date: '2023',
-    verificationBadge: 'VERIFIED CREDENTIAL',
-    description: 'Relational schema normalization, index strategies, transaction isolation levels, and Row-Level Security (RLS).'
-  },
-  {
-    id: 'cert-4',
-    name: 'Next.js Production Architecture & Server Components',
-    issuer: 'Vercel Ecosystem Labs',
-    date: '2024',
-    verificationBadge: 'VERIFIED CREDENTIAL',
-    description: 'React Server Components (RSC), edge middleware caching, streaming SSR, and incremental static revalidation (ISR).'
-  }
-];
-
-const STATS_DATA = [
-  { value: '4+', label: 'Years Engineering Systems', subtext: 'From algorithms to edge cloud' },
-  { value: '30+', label: 'Production Deploys', subtext: 'Zero-regression track record' },
-  { value: '99.98%', label: 'Uptime Reliability SLA', subtext: 'Engineered for resilience' },
-  { value: '100%', label: 'Strict Type Safety', subtext: 'Zero-any codebase standard' },
-];
+import {
+  TIMELINE as TIMELINE_DATA,
+  CERTIFICATIONS as CERTIFICATIONS_DATA,
+  STATS as STATS_DATA,
+} from '@/lib/data';
 
 export default function BackgroundSection() {
   const [activeTab, setActiveTab] = useState<'all' | 'career' | 'education' | 'philosophy'>('all');
@@ -630,7 +511,7 @@ export default function BackgroundSection() {
                     }}
                   >
                     <Award size={13} color="#000000" />
-                    <span>FIRST CLASS HONORS // DEAN&apos;S LIST</span>
+                    <span>FINAL YEAR // IN PROGRESS</span>
                   </div>
 
                   <h4
@@ -643,7 +524,7 @@ export default function BackgroundSection() {
                       lineHeight: 1.25,
                     }}
                   >
-                    B.S. in Computer Science & Cloud Systems
+                    Computer Science — final year
                   </h4>
 
                   <div
@@ -655,7 +536,7 @@ export default function BackgroundSection() {
                       marginBottom: '16px',
                     }}
                   >
-                    Faculty of Computing & Informatics
+                    Kulliyyah of ICT
                   </div>
 
                   <p
@@ -667,7 +548,7 @@ export default function BackgroundSection() {
                       marginBottom: '18px',
                     }}
                   >
-                    Rigorous formal coursework in software theory, low-level system design, algorithm analysis, and distributed network engineering. Graduated top-tier with research focus in high-throughput cloud web runtimes.
+                    Coursework across machine learning, natural language processing, operating systems and software design, with the final-year project on a smart bag concept. Still studying — the degree finishes with the FYP.
                   </p>
 
                   <div
@@ -686,12 +567,12 @@ export default function BackgroundSection() {
 
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                     {[
-                      'Distributed Systems Architecture',
-                      'Relational Database Internals',
+                      'Machine Learning',
+                      'Natural Language Processing',
+                      'Operating Systems',
                       'Data Structures & Algorithms',
-                      'Operating Systems & Networking',
-                      'Microservices & Cloud Infrastructure',
-                      'Software Security & Cryptography'
+                      'Software Design',
+                      'Computer Vision (FYP)'
                     ].map((course, cIdx) => (
                       <span
                         key={cIdx}
@@ -739,7 +620,7 @@ export default function BackgroundSection() {
                       margin: 0,
                     }}
                   >
-                    Industry Certifications & Credentials
+                    Coursework & Training
                   </h3>
                 </div>
 

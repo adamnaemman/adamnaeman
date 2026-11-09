@@ -379,7 +379,7 @@ export default function ContactSection() {
                         color: '#000000',
                       }}
                     >
-                      Kuala Lumpur // Remote Worldwide
+                      Malaysia // Remote friendly
                     </div>
                   </div>
                 </div>
@@ -431,7 +431,7 @@ export default function ContactSection() {
                         color: '#000000',
                       }}
                     >
-                      Under 24 Hours Guaranteed
+                      Usually within 24 hours
                     </div>
                   </div>
                 </div>

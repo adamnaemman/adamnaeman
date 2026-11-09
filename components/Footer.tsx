@@ -59,7 +59,7 @@ export default function Footer() {
                 fontSize: '0.88rem',
               }}
             >
-              Full Stack Craftsman & Cloud Solutions Architect.
+              Full stack developer · software, ML and 3D.
             </p>
           </div>
 

@@ -4,106 +4,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { ExternalLink, Github, Sparkles, X, ChevronRight, Layers, ArrowLeft, ArrowRight, Monitor, CheckCircle2 } from 'lucide-react';
 
-interface ProjectDetail {
-  id: string;
-  title: string;
-  tagline: string;
-  category: string;
-  description: string;
-  architecture: string[];
-  metrics: { label: string; value: string }[];
-  tags: string[];
-  demo_url?: string;
-  github_url?: string;
-  image_url: string;
-}
+import { PROJECTS as PROJECTS_DATA } from '@/lib/data';
+import type { Project } from '@/lib/types';
 
-const PROJECTS_DATA: ProjectDetail[] = [
-  {
-    id: '1',
-    title: 'CloudScale AI Analytics',
-    tagline: 'Enterprise edge telemetry monitoring with real-time anomaly detection',
-    category: 'Full Stack & AI',
-    description: 'An enterprise-grade telemetry observability platform designed to monitor distributed edge microservices, stream real-time database health metrics, and trigger automated anomaly alerts with sub-second response times.',
-    architecture: [
-      'Edge streaming with Next.js 14 App Router and streaming server components',
-      'Timeseries aggregation pipelines running on PostgreSQL & Supabase Realtime',
-      'High-frequency interactive canvas visualizer rendering 100k+ data points at 60fps'
-    ],
-    metrics: [
-      { label: 'Ingestion Rate', value: '45k evt/s' },
-      { label: 'Uptime SLA', value: '99.98%' },
-      { label: 'P95 Latency', value: '< 25ms' },
-    ],
-    tags: ['Next.js 14', 'Supabase', 'PostgreSQL', 'TypeScript', 'Tailwind CSS', 'GCP'],
-    demo_url: 'https://demo-analytics.vercel.app',
-    github_url: 'https://github.com/adamnaeman/cloudscale-analytics',
-    image_url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    id: '2',
-    title: 'Nexus Decentralized Hub',
-    tagline: 'High-throughput P2P sync and cryptographic proof network',
-    category: 'Web3 & Cloud',
-    description: 'A distributed data exchange network engineered with cryptographic proof verification, automated edge failover, and low-latency WebSocket presence channels to synchronize decentralized state across multiple cloud regions.',
-    architecture: [
-      'Zero-knowledge proof verification daemons optimized for concurrent execution',
-      'Bi-directional WebSocket cluster with Supabase Realtime synchronization',
-      'Multi-region Docker container clusters with automated health-check routing'
-    ],
-    metrics: [
-      { label: 'Sync Latency', value: '< 12ms' },
-      { label: 'Throughput', value: '1.2 GB/s' },
-      { label: 'Encryption', value: 'ChaCha20' },
-    ],
-    tags: ['TypeScript', 'Rust', 'Supabase', 'WebSockets', 'GraphQL', 'Docker'],
-    demo_url: 'https://nexus-hub.vercel.app',
-    github_url: 'https://github.com/adamnaeman/nexus-hub',
-    image_url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    id: '3',
-    title: 'Aura UI Studio',
-    tagline: 'Design token engine and interactive component workbench',
-    category: 'Frontend & UI Systems',
-    description: 'A comprehensive component sandbox and design system generator featuring real-time CSS token synchronization, dark mode palette generation, fluid typography math, and accessible UI interactions.',
-    architecture: [
-      'Modular design token compiler exporting to CSS variables, Tailwind tokens, and Figma JSON',
-      'Accessible WCAG AAA component architecture with zero-runtime layout shift',
-      'Hardware-accelerated micro-interactions powered by CSS custom properties and spring physics'
-    ],
-    metrics: [
-      { label: 'Component Kits', value: '65+ Blocks' },
-      { label: 'Accessibility', value: 'WCAG AAA' },
-      { label: 'Bundle Size', value: '18 KB gzip' },
-    ],
-    tags: ['React 19', 'Next.js', 'CSS Architecture', 'Figma API', 'Framer Motion'],
-    demo_url: 'https://aura-ui.vercel.app',
-    github_url: 'https://github.com/adamnaeman/aura-ui-studio',
-    image_url: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    id: '4',
-    title: 'Pulse Realtime Collaboration',
-    tagline: 'Multi-user live document & canvas editing engine',
-    category: 'Full Stack & Cloud',
-    description: 'A dynamic multiplayer canvas and workspace editor with live multi-cursor presence, instant operational transformation, and automated Postgres database revalidation powered by Supabase Realtime.',
-    architecture: [
-      'Multi-tenant database schema with automated Supabase Row Level Security (RLS) policies',
-      'Conflict-free Replicated Data Types (CRDTs) ensuring robust offline-first synchronization',
-      'Microservice telemetry workers processing document revision history and delta snapshots'
-    ],
-    metrics: [
-      { label: 'Presence Sync', value: '< 15ms' },
-      { label: 'Concurrent Users', value: '10,000+' },
-      { label: 'Data Loss', value: '0.00%' },
-    ],
-    tags: ['Next.js', 'Supabase Realtime', 'PostgreSQL', 'Tailwind CSS', 'WebRTC'],
-    demo_url: 'https://pulse-collab.vercel.app',
-    github_url: 'https://github.com/adamnaeman/pulse-collab',
-    image_url: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80',
-  },
-];
+type ProjectDetail = Project;
 
 // ============================================================================
 // COMPUTER TEMPLATE MOCKUP COMPONENT
@@ -151,12 +55,12 @@ function ComputerMockup({
 
             <div className="browser-url-pill">
               <span className="lock-icon">🔒</span>
-              <span className="url-text">adamnaeman.dev/{urlSlug}</span>
+              <span className="url-text">adamnaeman.vercel.app/{urlSlug}</span>
             </div>
 
             <div className="live-status-pill">
               <span className="status-dot" />
-              <span>LIVE</span>
+              <span>{project.status.toUpperCase()}</span>
             </div>
           </div>
 

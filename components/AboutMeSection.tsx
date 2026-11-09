@@ -106,19 +106,19 @@ export default function AboutMeSection() {
           {/* Editorial Paragraphs with Highlighted Typography */}
           <div className="about-paragraphs">
             <p className="about-p">
-              Hi, I&apos;m <span className="highlight-dark">Adam Naeman</span>, a creative full-stack engineer and cloud developer with a relentless passion for building interactive digital worlds. Ever since writing my first lines of code, I have been driven by software that doesn&apos;t just quietly function in the background, but <span className="highlight-dark">sparks genuine tactile delight</span> directly in the browser.
+              Hi, I&apos;m <span className="highlight-dark">Adam Naeman</span> — a final-year computer science student who builds web apps, trains models and models things in 3D. The thread running through all of it is making software feel physical: the skill selector on this page is a mechanical keyboard that <span className="highlight-dark">synthesises its own key sounds</span> in the browser instead of shipping audio files.
             </p>
 
             <p className="about-p">
-              With a deep technical foundation in <span className="highlight-dark">Computer Science & Cloud Systems</span>, I specialize in architecting resilient end-to-end web applications using <span className="highlight-dark">Next.js, TypeScript, PostgreSQL (Supabase), and Google Cloud Platform (GCP)</span>. From configuring high-throughput serverless microservices to tuning relational databases, I build systems engineered for long-term scalability.
+              What I actually work with: <span className="highlight-dark">Next.js and TypeScript</span> on the front end, <span className="highlight-dark">Python and PyTorch</span> for machine learning, and <span className="highlight-dark">Blender</span> for parametric 3D. Recent builds are a paddy leaf disease classifier behind a React app, a PyTorch reimplementation of a 2025 multimodal sentiment paper, and my final-year project — a parametrically modelled smart bag.
             </p>
 
             <p className="about-p">
-              One thing about me is that I <span className="highlight-dark">genuinely love building things that feel alive</span> — whether it is 2.5D interactive audio workstations, procedural 3D motion graphics, or tactile brutalist web interfaces. I believe the modern web shouldn&apos;t be flat and cookie-cutter; it should feel tangible, playful, and crafted with intention.
+              I care about proof more than adjectives. Every project on this page has source behind it, and when something is still in progress I say so. Placeholder case studies and borrowed metrics are worse than an empty section — so there are none.
             </p>
 
             <p className="about-p">
-              As I continue evolving my craft, I am actively partnering with ambitious teams, crafting cutting-edge web products, and pushing creative engineering forward. When I&apos;m not at my terminal shipping commits, you&apos;ll find me exploring modular sound synthesis, experimenting with WebGL shaders, or hunting down the city&apos;s finest iced matcha brew.
+              I&apos;m looking for an internship where I can ship real software and learn from people who have been doing it longer. Away from the terminal: small Godot prototypes, and far too much iced matcha.
             </p>
           </div>
 
@@ -133,7 +133,7 @@ export default function AboutMeSection() {
           >
             <div className="status-badge">
               <MapPin size={14} color="#000000" />
-              <span>Kuala Lumpur // Remote Worldwide</span>
+              <span>Malaysia // Remote friendly</span>
             </div>
             <div className="status-badge">
               <Terminal size={14} color="#000000" />
