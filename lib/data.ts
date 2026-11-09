@@ -1,4 +1,4 @@
-import { Project, GuestbookEntry, SkillCategory, ExperienceItem } from './types';
+import { Project, SkillCategory, ExperienceItem } from './types';
 
 export const INITIAL_PROJECTS: Project[] = [
   {
@@ -52,33 +52,6 @@ export const INITIAL_PROJECTS: Project[] = [
     featured: false,
     sort_order: 4,
     created_at: '2025-02-10T14:00:00.000Z',
-  }
-];
-
-export const INITIAL_GUESTBOOK: GuestbookEntry[] = [
-  {
-    id: 'g1',
-    name: 'Sarah Chen',
-    message: 'Incredible portfolio design! The animations and Supabase real-time integration are super slick. 🚀',
-    avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah',
-    reactions: { heart: 12, fire: 5, rocket: 8 },
-    created_at: '2025-02-14T06:20:00.000Z',
-  },
-  {
-    id: 'g2',
-    name: 'Marcus Thorne',
-    message: 'Love the acid pop graffiti UI! The retro cassette and interactive Supabase board are so rad. 🔥',
-    avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus',
-    reactions: { heart: 8, fire: 14, rocket: 4 },
-    created_at: '2025-02-13T10:15:00.000Z',
-  },
-  {
-    id: 'g3',
-    name: 'Elena Rostova',
-    message: 'The performance is blazing fast on Vercel edge. Stellar craftsmanship!',
-    avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Elena',
-    reactions: { heart: 15, fire: 9, rocket: 11 },
-    created_at: '2025-02-12T16:45:00.000Z',
   }
 ];
 

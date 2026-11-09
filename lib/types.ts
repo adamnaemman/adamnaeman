@@ -12,20 +12,6 @@ export interface Project {
   created_at?: string;
 }
 
-export interface GuestbookEntry {
-  id: string;
-  name: string;
-  message: string;
-  email?: string;
-  avatar_url?: string;
-  reactions?: {
-    heart?: number;
-    fire?: number;
-    rocket?: number;
-  };
-  created_at: string;
-}
-
 export interface ContactSubmission {
   id?: string;
   name: string;

@@ -12,49 +12,17 @@ import {
   Copy, 
   Check, 
   Clock, 
-  Radio
+  Radio,
+  Linkedin
 } from 'lucide-react';
-import { supabase } from '@/lib/supabaseClient';
 
 export default function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
-  const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('adamnaeman@dev.io');
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2200);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-
-    if (supabase) {
-      try {
-        await supabase.from('contacts').insert([
-          {
-            name: formData.name,
-            email: formData.email,
-            subject: formData.subject || 'General Inquiry',
-            message: formData.message,
-          },
-        ]);
-      } catch (err) {
-        console.warn('Contact submission warning:', err);
-      }
-    }
-
-    setSubmitting(false);
-    setSubmitted(true);
-    setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
   return (
@@ -550,7 +518,7 @@ export default function ContactSection() {
                   color: '#000000',
                 }}
               >
-                Transmission Form
+                Direct Channels
               </span>
 
               <span
@@ -560,185 +528,69 @@ export default function ContactSection() {
                   color: '#666666',
                 }}
               >
-                [ SECURE SUBMISSION ]
+                [ NO FORM NEEDED ]
               </span>
             </div>
 
-            {submitted ? (
-              <div style={{ textAlign: 'center', padding: '50px 20px' }}>
-                <div
-                  style={{
-                    width: '64px',
-                    height: '64px',
-                    borderRadius: '50%',
-                    background: '#edeef2',
-                    border: '2px solid #000000',
-                    boxShadow: '3px 3px 0px #000000',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: '0 auto 20px auto',
-                  }}
-                >
-                  <CheckCircle2 size={34} color="#000000" />
-                </div>
-                <h3
-                  style={{
-                    fontFamily: 'var(--font-poppins)',
-                    fontSize: '1.6rem',
-                    fontWeight: 800,
-                    marginBottom: '10px',
-                    color: '#000000',
-                  }}
-                >
-                  Transmission Delivered!
-                </h3>
-                <p
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '0.94rem',
-                    color: '#555555',
-                    maxWidth: '460px',
-                    margin: '0 auto 28px auto',
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Thank you! Your message has been safely saved in the Supabase contacts registry. I will review and reply to your email shortly.
-                </p>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="about-btn-secondary"
-                  style={{ padding: '10px 22px', fontSize: '0.86rem' }}
-                >
-                  <span>SEND ANOTHER MESSAGE</span>
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                <div className="responsive-form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                  <div>
-                    <label 
-                      style={{ 
-                        display: 'block', 
-                        fontSize: '0.78rem', 
-                        fontFamily: 'var(--font-poppins)', 
-                        fontWeight: 800, 
-                        marginBottom: '6px',
-                        color: '#000000',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.04em',
-                      }}
-                    >
-                      Your Name <span style={{ color: '#ef4444' }}>*</span>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Alex Rivers"
-                      className="clean-form-input"
-                    />
-                  </div>
+            <p
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '0.98rem',
+                lineHeight: 1.7,
+                color: '#444444',
+                marginBottom: '22px',
+              }}
+            >
+              No form, no queue. Pick a channel and the message lands straight where I actually read it.
+            </p>
 
-                  <div>
-                    <label 
-                      style={{ 
-                        display: 'block', 
-                        fontSize: '0.78rem', 
-                        fontFamily: 'var(--font-poppins)', 
-                        fontWeight: 800, 
-                        marginBottom: '6px',
-                        color: '#000000',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.04em',
-                      }}
-                    >
-                      Your Email <span style={{ color: '#ef4444' }}>*</span>
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="alex@example.com"
-                      className="clean-form-input"
-                    />
-                  </div>
-                </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <a
+                href="https://www.linkedin.com/in/adam-naeman/"
+                target="_blank"
+                rel="noreferrer"
+                className="about-btn-primary"
+                style={{
+                  padding: '14px 24px',
+                  fontSize: '0.9rem',
+                  justifyContent: 'center',
+                  textDecoration: 'none',
+                }}
+              >
+                <Linkedin size={16} />
+                <span>CONNECT ON LINKEDIN</span>
+              </a>
 
-                <div>
-                  <label 
-                    style={{ 
-                      display: 'block', 
-                      fontSize: '0.78rem', 
-                      fontFamily: 'var(--font-poppins)', 
-                      fontWeight: 800, 
-                      marginBottom: '6px',
-                      color: '#000000',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.04em',
-                    }}
-                  >
-                    Subject / Topic
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    placeholder="Project Inquiry, Cloud Architecture, Full-Stack Role..."
-                    className="clean-form-input"
-                  />
-                </div>
+              <a
+                href="https://github.com/adamnaemman"
+                target="_blank"
+                rel="noreferrer"
+                className="about-btn-secondary"
+                style={{
+                  padding: '14px 24px',
+                  fontSize: '0.9rem',
+                  justifyContent: 'center',
+                  textDecoration: 'none',
+                }}
+              >
+                <Github size={16} />
+                <span>SEE CODE ON GITHUB</span>
+              </a>
+            </div>
 
-                <div>
-                  <label 
-                    style={{ 
-                      display: 'block', 
-                      fontSize: '0.78rem', 
-                      fontFamily: 'var(--font-poppins)', 
-                      fontWeight: 800, 
-                      marginBottom: '6px',
-                      color: '#000000',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.04em',
-                    }}
-                  >
-                    Message <span style={{ color: '#ef4444' }}>*</span>
-                  </label>
-                  <textarea
-                    required
-                    rows={5}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Tell me about what you're looking to build, technical specifications, or timeline goals..."
-                    className="clean-form-textarea"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="about-btn-primary"
-                  style={{
-                    padding: '14px 28px',
-                    fontSize: '0.94rem',
-                    justifyContent: 'center',
-                    marginTop: '4px',
-                    width: '100%',
-                  }}
-                >
-                  {submitting ? (
-                    <span>TRANSMITTING...</span>
-                  ) : (
-                    <>
-                      <Send size={16} />
-                      <span>TRANSMIT MESSAGE</span>
-                    </>
-                  )}
-                </button>
-              </form>
-            )}
+            <div
+              style={{
+                marginTop: '22px',
+                paddingTop: '16px',
+                borderTop: '1.5px dashed #000000',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.72rem',
+                color: '#666666',
+                lineHeight: 1.6,
+              }}
+            >
+              [ OPEN TO INTERNSHIP &amp; COLLABORATION ]
+            </div>
           </div>
         </div>
       </div>
