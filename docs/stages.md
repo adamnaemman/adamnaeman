@@ -161,24 +161,54 @@ Belum ada projek siap → guna kerja sebenar yang ada, label jujur. **Enam proje
 
 Live site sebelum ini **tiada satu pun tag OG** → share WhatsApp/Telegram keluar kosong.
 
-- Fail: `app/layout.tsx` — `viewport`/`themeColor` pindah ke `export const viewport`; tambah `metadataBase`,
-  canonical, `openGraph`, `twitter` (dengan `images`)
-- Fail baru: `public/og.png` (1200×630, dijana dengan PIL ikut palet site sendiri)
-- Fail baru: `app/robots.ts`, `app/sitemap.ts`
-- Fail: `app/page.tsx` — JSON-LD `Person` (name, jobTitle, knowsAbout, sameAs GitHub + LinkedIn, address MY)
+- Fail: `app/layout.tsx` — `themeColor`/`viewport` pindah ke `export const viewport` (`import type { Viewport }`
+  dari `next`); tambah `metadataBase`, `alternates.canonical`, `openGraph` (type `website`, url, siteName,
+  title, description, locale `en_MY`, `images` 1200×630 + alt) dan `twitter` (`summary_large_image` + image)
+- Fail baru: `app/robots.ts`, `app/sitemap.ts` (`MetadataRoute`; sitemap senaraikan `/` sahaja)
+- Fail: `app/page.tsx` — JSON-LD `Person` (name, url, jobTitle, knowsAbout, sameAs GitHub + LinkedIn, address MY)
+- Fail baru: `public/og.png` — 1200×630, 33,160 bait, aksen `#aef324` + hitam, nama + baris positioning +
+  domain. Bukan imej stok.
 
-**Kegagalan dijumpai:** `app/opengraph-image.tsx` (next/og ImageResponse) **gagal semasa prerender** pada
-Windows + Next 14 — `TypeError: Invalid URL` dalam `fileURLToPath` (@vercel/og). Bukan kod projek.
-Penyelesaian: PNG statik + `openGraph.images`, tiada runtime OG. Fail `opengraph-image.tsx` dibuang.
+**Lencongan dari pelan:** `app/opengraph-image.tsx` (`next/og` `ImageResponse`) dibuang. Pada mesin ini ia
+gagal semasa prerender: `TypeError: Invalid URL` di `fileURLToPath` dalam
+`node_modules/next/dist/compiled/@vercel/og/index.node.js` (isu Windows + Next 14, bukan kod projek).
+Dengan `export const runtime = 'edge'` build lulus tetapi route jadi dynamic (`ƒ /opengraph-image`) — imej
+dirender setiap request dan tiada fail output untuk disahkan masa build. PNG statik dipilih: deterministik,
+boleh disahkan, tiada runtime.
 
-**Bukti:**
-- `tsc --noEmit` → exit 0; `npm run build` → Compiled successfully, **0 "Unsupported metadata" warning**
-  (sebelum ini 4), route table tambah `/robots.txt` dan `/sitemap.xml`
-- `curl /` → tag lengkap: `og:title`, `og:description`, `og:url`, `og:site_name`, `og:locale`, `og:image`
-  (1200×630 + alt), `og:type`, `twitter:card=summary_large_image`; `<link rel=canonical>` betul
-- `curl /robots.txt` → `Allow: /` + `Sitemap:`; `curl /sitemap.xml` → 1 URL
-- JSON-LD: `"@context":"https://schema.org"`, `"@type":"Person"` hadir dalam HTML
-- Live selepas deploy: `robots.txt` 200, `sitemap.xml` 200, `og.png` 200, `og:image` hadir dalam HTML
+**Bukti (dijalankan pada working tree = `2e18648`):**
+- `npx tsc --noEmit` → exit 0, **0 baris output**
+- `npm run build` → Compiled successfully; `grep -ciE "unsupported metadata|themeColor|viewport"` pada log build
+  → **0** (warning `Unsupported metadata themeColor/viewport` tiada lagi). Route table: `/` (41.9 kB / First Load 129 kB), `/_not-found`,
+  `/robots.txt`, `/sitemap.xml`
+- Header PNG (IHDR) `public/og.png` → **1200 × 630**, bitDepth 8, colorType 2, 33,160 bait
+- `.next/server/app/index.html` (107,617 bait) mengandungi: `og:title`, `og:description`, `og:url`,
+  `og:site_name=Adam Naeman`, `og:locale=en_MY`, `og:type=website`,
+  `og:image=https://adamnaeman.vercel.app/og.png`, `og:image:width=1200`, `og:image:height=630`, `og:image:alt`,
+  `twitter:card=summary_large_image`, `twitter:title`, `twitter:description`, `twitter:image`,
+  `<link rel="canonical" href="https://adamnaeman.vercel.app">`
+- JSON-LD: 1 blok, `JSON.parse` lulus → `@type=Person`, `name=Adam Naeman`, `sameAs` =
+  `github.com/adamnaemman` + `linkedin.com/in/adam-naeman/`
+- `.next/server/app/robots.txt.body` (111 bait):
+  `User-Agent: *` / `Allow: /` / `Host: https://adamnaeman.vercel.app` /
+  `Sitemap: https://adamnaeman.vercel.app/sitemap.xml`
+- `.next/server/app/sitemap.xml.body` (264 bait): `<loc>https://adamnaeman.vercel.app</loc>`, `changefreq monthly`,
+  `priority 1`
+- Imej OG dibuka dan dilihat: teks tidak terpotong (salinan preview dalam
+  `…/profiles/developer/cache/scratch/og-preview.png`, bukan dalam repo)
+- Runtime `npx next start -p 3111` + curl: `/` **200** (107,690 bait HTML), `/robots.txt` **200**,
+  `/sitemap.xml` **200**, `/og.png` **200** `image/png` `Content-Length: 33160` (bait sama dengan
+  `public/og.png`); tag `og:*`, `twitter:*`, `rel="canonical"` keluar dari server sebenar
+
+**Live (disahkan dari mesin ini, `curl https://adamnaeman.vercel.app`):**
+- `/og.png` → **200** `image/png`, IHDR **1200 × 630**, 33,160 bait (bait sama dengan `public/og.png` dalam repo)
+- `/robots.txt` → **200**, kandungan sama seperti build; `/sitemap.xml` → **200**, 1 URL
+- HTML live 107,690 bait dengan `og:title`, `og:description`, `og:image` (+width/height/alt), `og:type`,
+  `og:url`, `og:site_name`, `og:locale`, `twitter:card` dan `<link rel="canonical">`
+
+**Tinggal:** `public/og.png` tiada skrip penjana dalam repo — kalau baris positioning bertukar, imej kena
+dibuat semula secara manual. Satu-satunya cara "kod" (`app/opengraph-image.tsx`) tak boleh dipakai pada
+Windows + Next 14 ini (lihat lencongan di atas).
 
 ---
 
