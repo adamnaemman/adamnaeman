@@ -113,26 +113,47 @@ commit yang sama. `tsconfig.json` dalam commit itu tercemar oleh `next dev` (ref
 
 ---
 
-## Stage 3 — Kandungan projek sebenar (P0, kerja besar)
+## Stage 3 — Kandungan projek sebenar ✅ (commit `6e8f46f`)
 
-Belum ada projek siap → guna kerja sebenar yang ada, label jujur (`FYP — in progress`, `Coursework`,
-`Prototype`). Calon dalam mesin:
+Belum ada projek siap → guna kerja sebenar yang ada, label jujur. **Enam projek**, semua ada sumber:
 
-- `D:\RESEARCH\bagsense-model` — FYP, computer vision / bag detection
-- `D:\PROJECTS\TimeRush-coding` + `TimeRush-design` — design + app
-- `D:\ML\paddy-disease-classification` + `paddy-webapp` — ML classification + web demo
-- `D:\NLP\dgca_meme_sentiment` — NLP sentiment
-- `D:\GAME\jrpg-starter-town` — Godot 4.6 cozy garden (town.glb 1,142 mesh)
-- `D:\ADAM OS\HQ`, `D:\hermes` — internal tooling
+1. This Portfolio — Next.js 14 static, 129 kB first load
+2. BagSense — FYP, model parametrik Blender + konsep ESP32/e-paper
+3. DGCA Meme Sentiment — PyTorch, BERT + ResNet50, Memotion 2020
+4. Paddy Disease App — classifier + React 19 + Vite + Firebase + Gemini
+5. Cozy Garden Town — Godot 4.6.2, town mesh 1,142 objek
+6. TimeRush — ESP32 line follower, PID, 5 sensor IR
 
-- Fail: `lib/data.ts` — `INITIAL_PROJECTS` jadi kerja sebenar; buang `EXPERIENCES` rekaan dan `STATS`
-  yang tak boleh dipertahankan (`3+ years`, `25+ projects`, `10+ databases`, `100% satisfaction`)
-- Fail: `components/ProjectsSection.tsx` — buang array projek hardcoded (data diduplikasi), import dari
-  `lib/data.ts`
-- Fail: `components/BentoAbout.tsx`, `components/AboutMeSection.tsx` — buang dakwaan yang sama
+- Fail: `lib/data.ts` — `PROJECTS` jadi satu-satunya sumber; `ProjectsSection.tsx` import, array
+  hardcoded kedua dibuang
+- Fail: `components/ProjectsSection.tsx` — badge status ikut `project.status` (dulu semua tulis "LIVE"
+  walaupun projek belum siap); URL bar `adamnaeman.dev` → `adamnaeman.vercel.app`
+- Fail: `components/BackgroundSection.tsx` — timeline palsu (CloudScale Technologies, Digital Innovation
+  Studios, High Growth Labs) → BagSense / self-directed / coursework / hardware; "FIRST CLASS HONORS //
+  DEAN'S LIST" + "Graduated top-tier" → "FINAL YEAR // IN PROGRESS"; "Industry Certifications" →
+  "Coursework & Training"; chip kursus rekaan → kursus sebenar
+- Fail: `components/KeyboardExperienceProjects.tsx` — 22 key (Docker, Rust, GraphQL, GCP, Supabase…)
+  → 14 key yang betul-betul dipakai; pengalaman rekaan per key dibuang
+- Fail: `lib/data.ts` — `STATS` "4+ years / 30+ deploys / 99.98% SLA / 100% satisfaction"
+  → 6 projek / 0 placeholder / static deploy / 2 disiplin
+- Fail: `components/AboutMeSection.tsx` — bio "cloud developer, PostgreSQL, GCP" → student tahun akhir,
+  apa yang betul-betul dibina
+- Fail: `components/Footer.tsx` — "Full Stack Craftsman & Cloud Solutions Architect" → "Full stack
+  developer · software, ML and 3D"
+- Fail: `components/ContactSection.tsx` — "Kuala Lumpur // Remote Worldwide" → "Malaysia // Remote
+  friendly"; "Under 24 Hours Guaranteed" → "Usually within 24 hours"
+- Fail: `app/layout.tsx` — title/description/keywords tak lagi dakwa cloud engineering
+- Fail baru: `public/projects/*.webp` — render BagSense sebenar, screenshot portfolio, poster TimeRush,
+  kad tipografi untuk projek tanpa screenshot (tiada gambar stok)
 
-**Input diperlukan:** pilih 3–4 kerja di atas + satu baris apa yang dibuat, stack, status.
-**Bukti:** grep 0 placeholder; screenshot section; `check-links.sh` semua 200.
+**Bukti:**
+- `tsc --noEmit` → exit 0; `npm run build` → Compiled successfully, `/` 41.9 kB, First Load 129 kB
+- `bash tools/check-links.sh` → **all links ok** (sebelum ini 6 FAIL)
+- DOM overlay: badge = `LIVE, IN PROGRESS, COURSEWORK, COURSEWORK, PROTOTYPE, HARDWARE BUILD`
+- `grep` nama palsu (`CloudScale|Nexus|Aura|Pulse|Digital Innovation|High Growth|99.98|45k evt|dev.io`)
+  → 0 padanan dalam `app/ components/ lib/`
+- Screenshot: overlay 6 workstation dengan imej sebenar; timeline + coursework render betul
+- Macropad: 14 key, label `ADAM.MK // 14-KEY MECHANICAL ORTHO`
 
 ---
 
