@@ -50,19 +50,19 @@ DOMAIN = "adamnaeman.vercel.app"
 
 # Pill row: (label, left, right, label ink x). Measured off the shipped card.
 PILL_TOP, PILL_BOTTOM = 470, 510
-PILL_RADIUS = 6
+PILL_RADIUS = 8
 PILL_STROKE = 3
 PILL_LABEL_Y = 483
 PILLS = [
-    ("NEXT.JS", 72, 186, 87),
+    ("NEXT.JS", 72, 186, 86),
     ("TYPESCRIPT", 198, 356, 211),
-    ("PYTORCH", 368, 496, 383),
-    ("BLENDER", 508, 635, 523),
+    ("PYTORCH", 368, 496, 382),
+    ("BLENDER", 508, 635, 522),
     ("GODOT", 647, 749, 661),
 ]
 
 BADGE_BOX = (961, 66, 1128, 110)
-BADGE_RADIUS = 18
+BADGE_RADIUS = 22
 BADGE_LABEL_Y = 80
 
 # Ink-box anchors for the type blocks.
@@ -100,12 +100,12 @@ FONT_FILES = {
         "LiberationSans-Regular.ttf",
         "DejaVuSans.ttf",
     ],
-    "mono_bold": [
-        "consolab.ttf",
-        "Consolas Bold.ttf",
+    "mono": [
+        "consola.ttf",
+        "Consolas.ttf",
         "CascadiaMono.ttf",
-        "DejaVuSansMono-Bold.ttf",
-        "courbd.ttf",
+        "DejaVuSansMono.ttf",
+        "cour.ttf",
     ],
 }
 
@@ -125,17 +125,8 @@ def load_font(kind: str, size: int) -> ImageFont.FreeTypeFont:
 # --- text -------------------------------------------------------------------
 
 
-def _solid(value: int) -> int:
-    return 255 if value >= 128 else 0
-
-
-def ink_mask(text: str, font: ImageFont.FreeTypeFont) -> tuple[Image.Image, tuple[int, int]]:
-    """Render `text` to a mask, cropped to its ink bounds.
-
-    Returns the mask plus the offset from the crop origin to the first *solid*
-    (>50% coverage) pixel, so callers can anchor on solid ink instead of on a
-    nearly-transparent antialiasing column.
-    """
+def ink_mask(text: str, font: ImageFont.FreeTypeFont) -> Image.Image:
+    """Render `text` to a mask and crop it to its ink bounds."""
     pad = 24
     layer = Image.new(
         "L",
@@ -146,10 +137,7 @@ def ink_mask(text: str, font: ImageFont.FreeTypeFont) -> tuple[Image.Image, tupl
     bbox = layer.getbbox()
     if bbox is None:
         raise SystemExit("make-og: no ink for %r" % text)
-    solid = layer.point(_solid).getbbox()
-    if solid is None:
-        raise SystemExit("make-og: no solid ink for %r" % text)
-    return layer.crop(bbox), (solid[0] - bbox[0], solid[1] - bbox[1])
+    return layer.crop(bbox)
 
 
 def stamp(
@@ -159,9 +147,8 @@ def stamp(
     xy: tuple[int, int],
     fill: tuple[int, int, int] = INK,
 ) -> None:
-    """Paste `text` so the top-left of its solid ink lands exactly on `xy`."""
-    mask, (dx, dy) = ink_mask(text, font)
-    canvas.paste(fill, (int(xy[0]) - dx, int(xy[1]) - dy), mask)
+    """Paste `text` so the top-left of its ink box lands exactly on `xy`."""
+    canvas.paste(fill, (int(xy[0]), int(xy[1])), ink_mask(text, font))
 
 
 # --- build ------------------------------------------------------------------
@@ -178,7 +165,7 @@ def build() -> Image.Image:
         draw.line([(0, y), (W - 1, y)], fill=GRID)
 
     draw.rectangle(
-        [FRAME_INSET, FRAME_INSET, W - 1 - FRAME_INSET, H - 1 - FRAME_INSET],
+        [FRAME_INSET, FRAME_INSET, W - FRAME_INSET, H - FRAME_INSET],
         outline=INK,
         width=FRAME_WIDTH,
     )
@@ -190,10 +177,10 @@ def build() -> Image.Image:
     draw.rounded_rectangle(
         [bx0, by0, bx1, by1], radius=BADGE_RADIUS, outline=INK, width=PILL_STROKE
     )
-    badge, (bdx, _) = ink_mask(BADGE, load_font("sans_bold", SIZE_BADGE))
+    badge = ink_mask(BADGE, load_font("sans_bold", SIZE_BADGE))
     inner_left = bx0 + PILL_STROKE
     inner_width = bx1 + 1 - PILL_STROKE - inner_left
-    badge_x = inner_left + (inner_width - badge.width) // 2 - bdx
+    badge_x = inner_left + (inner_width - badge.width) // 2
     canvas.paste(INK, (badge_x, BADGE_LABEL_Y), badge)
 
     # Headline block.
@@ -213,7 +200,7 @@ def build() -> Image.Image:
         stamp(canvas, label, pill_font, (label_x, PILL_LABEL_Y))
 
     # Domain, bottom right.
-    stamp(canvas, DOMAIN, load_font("mono_bold", SIZE_DOMAIN), DOMAIN_POS)
+    stamp(canvas, DOMAIN, load_font("mono", SIZE_DOMAIN), DOMAIN_POS)
 
     return canvas
 
