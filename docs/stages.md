@@ -206,43 +206,68 @@ boleh disahkan, tiada runtime.
 - HTML live 107,690 bait dengan `og:title`, `og:description`, `og:image` (+width/height/alt), `og:type`,
   `og:url`, `og:site_name`, `og:locale`, `twitter:card` dan `<link rel="canonical">`
 
-**Tinggal:** `public/og.png` tiada skrip penjana dalam repo — kalau baris positioning bertukar, imej kena
-dibuat semula secara manual. Satu-satunya cara "kod" (`app/opengraph-image.tsx`) tak boleh dipakai pada
-Windows + Next 14 ini (lihat lencongan di atas).
+**Tinggal (dah selesai):** `public/og.png` kini ada penjana — `tools/make-og.py` (commit `fcb6089`).
+Skrip Pillow itu menghasilkan semula card **byte-identik** dengan asal (sha256 `6c60829e…`, 33,160 bait,
+756,000/756,000 piksel sama), guna font sistem (Arial Bold/Regular, Consolas), tiada rangkaian.
 
 ---
 
-## Stage 5 — Berat halaman ✅ (commit `4c7c940`)
+## Stage 5 — Berat halaman ✅ (commit `3799ff3`; asas `4c7c940`)
 
-11 Google Font family dalam satu `@import` (53 kB CSS, **129 `@font-face`**); 890 kB gambar dalam
-`public/` yang **tidak dirujuk di mana-mana**; `/favicon.ico` 404.
+Baseline: 11 Google Font family dalam satu `@import` (**53 kB CSS, 129 `@font-face`**, semua dari
+`fonts.googleapis.com`), 890 kB gambar dalam `public/` yang **tidak dirujuk di mana-mana**.
 
-- Fail: `app/globals.css` — `@import` Google Fonts dibuang; semua `--font-*` kini var `--ff-*` dari
-  `next/font`, dengan fallback sistem (`system-ui`, `Georgia`, `ui-monospace`)
-- Fail: `app/layout.tsx` — `next/font/google` untuk **6 family**: Poppins (400/600/700/800/900),
-  Space Grotesk (variable), JetBrains Mono (variable), Silkscreen (400/700), Titan One (400),
-  Playfair Display (italic 600 sahaja, untuk overlay hero). Dibuang: Syne, Cormorant Garamond, Bungee,
-  Plus Jakarta Sans, Permanent Marker — tiada satu pun dipakai, atau hanya dalam komponen `0 import`
-  (`RetroStudioDiorama`)
-- Fail: `public/about-tray-diorama.png` (545 kB) + `.jpg` (345 kB) — dipadam, `grep` seluruh repo
-  tunjuk hanya `.git/index` yang menyebutnya
-- Fail baru: `app/icon.png` (512×512) — Next serve sebagai favicon; `<link rel="icon">` manual dibuang
-- Fail baru: `tools/make-og.py`, `tools/make-icon.py` — aset dijana semula bila-bila masa (PIL)
+**Peranan font yang betul-betul dipakai** (dikira dengan `grep -- "--font-"` pada `app/ components/ lib/`,
+bukan diandaikan) — 8 peranan, bukan 6:
 
-**Bukti:**
-- `tsc --noEmit` → exit 0; `npm run build` → Compiled successfully, `/` 41.9 kB, First Load **129 kB**
-  (tak berubah), route table tambah `/icon.png`
-- Runtime (Chromium, cache dibersihkan, prod build lokal): **7 woff2 / 116 kB**, **0 request** ke
-  `fonts.googleapis|gstatic`, `@font-face` declared **129 → 40**, 9 loaded, body font = `__Poppins_*`
-- Saiz `public/` penuh: **≈1.07 MB → 204 kB**
-- Live: `icon.png` 200, `og.png` 200, `robots.txt` 200, `about-tray-diorama.png` **404** (dah tiada)
-- HTML live: `fonts.googleapis` **0**, `<link rel="icon" href="/icon.png?...">` hadir
+| var | family | dipakai oleh |
+|---|---|---|
+| `--font-body` | Plus Jakarta Sans 400/600/700/800 | `body{}` → **337/756 elemen** mewarisinya |
+| `--font-poppins` | Poppins 400/500/600/700/800/900 | 95 rujukan (hero, about, background…) |
+| `--font-display` | Space Grotesk (variable) | 36 rujukan |
+| `--font-pixel` | Silkscreen 400/700 | 19 rujukan |
+| `--font-mono` | JetBrains Mono (variable) | 15 rujukan |
+| `--font-bubble` | Titan One 400 | 10 rujukan (`.section-title`) |
+| `--font-serif` | Playfair Display **italic 600** | overlay "portfolio" dalam `Hero.tsx` |
+| `--font-graffiti` | Permanent Marker 400 | label "Pop!" dalam `RetroStudioDiorama.tsx` |
+
+Dibuang kerana tiada peranan: **Syne**, **Cormorant Garamond**, **Bungee** (ketiga-tiganya hanya muncul
+sebagai nilai dalam `:root` yang tidak digunakan), dan var mati `--font-script` / `--font-calligraphy`
+(Alex Brush / Great Vibes — tidak pernah dimuatkan, jatuh ke `cursive`).
+
+- Fail: `app/globals.css` — `@import` Google Fonts dibuang; `--font-*` kini `var(--ff-*)` dari `next/font`
+  dengan fallback sistem (`system-ui`, `Georgia`, `ui-monospace`, `cursive`)
+- Fail: `app/layout.tsx` — 8 `next/font/google`, setiap satu `variable: '--ff-*'` pada `<html>`;
+  `display: 'swap'`
+- Fail: `public/about-tray-diorama.png` (557,686 B) + `.jpg` (352,307 B) — **dipadam, bukan ditukar ke
+  WebP**: `grep` seluruh repo tunjuk 0 rujukan (section About ialah CSS; `RetroStudioDiorama` tidak
+  pernah di-mount). Salinan asal di luar repo:
+  `…/developer/cache/scratch/diorama-originals/` (sha256 `6de5a1df…` / `322d1a10…`)
+- Fail baru: `app/icon.png`, `tools/make-icon.py`, `tools/make-og.py` (aset dijana semula dengan PIL)
+
+**Bukti (dijalankan pada working tree = `3799ff3`, prod build lokal):**
+- `npx tsc --noEmit` → **exit 0, 0 baris output**
+- `npm run build` → **Compiled successfully**, 0 warning; `/` **42.2 kB / First Load 130 kB**
+- Kawalan bahawa font tidak menambah JS: build `bd604e1` (kerja hero/nav) **tanpa** perubahan font ini
+  juga **42.2 kB / 130 kB** → delta font = **0 kB**. Kenaikan dari baseline 41.9/129 datang dari Stage 6
+- CSS build: **29,478 bait**, 62 `@font-face`, **0** `@import`, **0** `fonts.googleapis|gstatic`
+  (`grep -c` pada `.next/static/css/*.css`)
+- Font: **42 fail woff2 / 619,564 bait** dalam `.next/static/media`, 14 daripadanya preload
+  (`.p.woff2`, **206,960 bait**); Chromium runtime ambil **10 woff2 same-origin**, **0 request** ke
+  `fonts.googleapis|gstatic`; `@font-face` declared **129 → 62**
+- `public/` penuh: **1,119,123 B → 209,130 B** (−81%); tinggal `og.png` 33,160 B + `projects/` 175,970 B
+- Screenshot 1440 & 390 (hero / about / projects): Poppins kekal untuk headline+badan, Playfair italic
+  untuk "portfolio", tiada teks terpotong; `document.body.scrollHeight` **6,907px** (1440) dan
+  **10,726px** (390), `scrollWidth` ≤ viewport (0 overflow mendatar)
 - `bash tools/check-links.sh` → all links ok
-- Screenshot hero: wordmark Poppins 900, italic overlay Playfair italic, label folder Silkscreen — gaya sama
 
-**Belum dibuat (bukan blok):** tiada `<link rel="preload" as="font">` dihasilkan next/font kerana font
-didaftar sebagai CSS variable pada `<html>`, bukan `className` pada elemen. Fail tetap same-origin dan
-`display: swap`; kalau nak preload, kena guna `className={poppins.className}` pada wrapper tertentu.
+**Nota:**
+- `4c7c940` (draf pertama stage ini) tinggalkan 6 family sahaja dengan `--font-body` dipetakan ke Poppins —
+  seluruh badan halaman bertukar rupa secara senyap. `3799ff3` pulihkan `--font-body` (Plus Jakarta Sans),
+  `--font-graffiti` (Permanent Marker) dan pemberat Poppins 500.
+- Permanent Marker kekal walaupun `RetroStudioDiorama` tidak di-mount (28.6 kB, bukan preload). Boleh
+  dibuang bila komponen itu dipadam — masa itu `--font-graffiti` jadi peranan mati.
+- Preload memang dihasilkan `next/font` (fail `.p.woff2`); nota draf sebelum ini yang kata sebaliknya salah.
 
 ---
 
