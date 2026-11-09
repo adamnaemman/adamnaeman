@@ -342,15 +342,18 @@ export default function Hero() {
             right: 12px !important;
           }
           .folder-connect {
-            bottom: 74px !important;
-            right: 12px !important;
+            bottom: 126px !important;
+            right: 22px !important;
           }
           .folder-experience {
-            bottom: 74px !important;
-            left: 12px !important;
+            bottom: 126px !important;
+            left: 22px !important;
           }
           .folder-label {
             font-size: 0.76rem !important;
+            max-width: 40vw !important;
+            text-align: center !important;
+            margin-top: 6px !important;
           }
           .hero-bold-word {
             font-size: clamp(2.2rem, 11vw, 5.2rem) !important;
