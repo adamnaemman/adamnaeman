@@ -4,7 +4,8 @@
 **Live:** https://adamnaeman.vercel.app/ (deploy commit `64a39f4`, sebelum kerja responsive)
 **Status:** ongoing — projek berasingan dari Adam OS (D:\ADAM OS\HQ)
 **v1 disimpan sebagai `stages-v1.md`.** v2 (9 Nov 2026) disemak ikut jawapan Adam: belum ada projek
-siap, tiada CV, GitHub `adamnaemman`, Supabase mati, guestbook dibuang.
+siap, tiada CV, GitHub `adamnaemman`, Supabase mati, guestbook dibuang. **Update:** email diberi
+(`0damkim254@gmail.com`) → CTA email jadi sah, buang `dev.io`.
 
 ---
 
@@ -83,21 +84,32 @@ kekal hijau.
 
 ---
 
-## Stage 2 — CTA jujur, sisa identiti (P0)
+## Stage 2 — CTA jujur, sisa identiti ✅ (commit `e600d9d`)
 
 Butang LinkedIn + GitHub dah masuk dalam Stage 1. Yang tinggal dalam contact section:
 
-- Fail: `components/ContactSection.tsx:314,327,476` — kotak email `adamnaeman@dev.io` + butang COPY
-  (domain palsu, tak wujud) → buang, atau tukar bila Adam bagi email sebenar
-- Fail: `components/ContactSection.tsx:489` — pil "GITHUB" masih `github.com/adamnaeman` → `adamnaemman`
-- Fail: `components/ContactSection.tsx:508` — pil "SUPABASE" (dah tak digunakan) → buang
-- Fail: `components/ContactSection.tsx` — teks kiri masih "synchronize with Supabase PostgreSQL" → tulis
-  semula ikut saluran sebenar
-- Fail: `components/ContactSection.tsx` — tajuk "DIRECT CHANNELS" berulang pada dua kad → kiri tukar
-- Fail: `components/Footer.tsx` — GitHub/LinkedIn ikut betul
+- Fail: `components/ContactSection.tsx` — kotak email `adamnaeman@dev.io` → **`0damkim254@gmail.com`**
+  (mailto, teks, butang COPY)
+- Fail: pil "GITHUB" `github.com/adamnaeman` → `github.com/adamnaemman`
+- Fail: pil "SUPABASE" (dah tak digunakan) → dibuang, diganti pil LINKEDIN
+- Fail: teks kiri "synchronize with Supabase PostgreSQL" → ditulis semula
+- Fail: tajuk "DIRECT CHANNELS" berulang → kad kanan jadi "START A CONVERSATION"
+- `tools/check-links.sh` ditambah (curl setiap URL dalam sumber)
 
-**Bukti:** `tools/check-links.sh` semua 200; screenshot contact desktop + mobile; `grep -rn "dev.io"`
-kosong; `grep -c "adamnaeman\b"` (bukan `adamnaemman`) = 0.
+**Bukti:**
+- `tsc --noEmit` → exit 0; `npm run build` → Compiled successfully, `/` 43.5 kB, First Load 131 kB
+- `bash tools/check-links.sh` → 6 FAIL, semuanya link projek palsu Stage 3
+  (`github.com/adamnaeman/{aura-ui-studio,cloudscale-analytics,nexus-hub,pulse-collab}` 404).
+  Link identiti 200: `github.com/adamnaemman`, `adamnaeman.vercel.app`; LinkedIn 999 (bot-block, bukan rosak)
+- Screenshot 1440: header kiri "CONTACT DETAILS", kanan "START A CONVERSATION", email baru, pil
+  GITHUB/LINKEDIN/VERCEL, butang CTA styled
+- DOM: `#contact a[href^=mailto]` = `0damkim254@gmail.com`; pil = `GITHUB, LINKEDIN, ▲ VERCEL`
+- `grep -rn "dev.io"` → 0
+
+**Nota:** `components/Footer.tsx` berubah di luar stage ini (badge GitHub/LinkedIn) dan terbawa dalam
+commit yang sama. `tsconfig.json` dalam commit itu tercemar oleh `next dev` (reformat + include
+`.next/s2/types` yang tak wujud) — dipulihkan dalam `fe87d22`; `tsc --noEmit` exit 0 dan
+`npm run build` lulus (43.5 kB / 131 kB) selepas pulih.
 
 ---
 
@@ -171,8 +183,9 @@ Live site sekarang **tiada satu pun tag OG** → share WhatsApp/Telegram keluar 
 ## Tertunggak (bila bahan wujud)
 
 - **CV PDF** → `public/cv.pdf` + butang di Hero dan Contact
-- **Email sebenar** → `mailto:` pada kad contact (tanpa backend)
 - **Projek baru** → tambah entri dalam `lib/data.ts` sahaja (selepas Stage 3, satu tempat)
+
+Email sebenar dah ada (`0damkim254@gmail.com`) — tak lagi tertunggak, masuk Stage 2.
 
 ## Tidak dilakukan (keputusan Adam)
 
