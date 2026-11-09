@@ -76,13 +76,15 @@ export default function Navbar() {
         {[
           { href: '#about', label: 'About' },
           { href: '#background', label: 'Background' },
-          { href: '#projects', label: 'Work' },
-          { href: '#contact', label: 'Contact' },
+          { href: '#projects', label: 'Projects' },
         ].map((item) => (
           <a key={item.href} href={item.href} className="navbar-desktop-link">
             {item.label}
           </a>
         ))}
+        <a href="#contact" className="navbar-desktop-cta">
+          Let&apos;s Connect
+        </a>
       </nav>
 
       <div className="navbar-hamburger" style={{ position: 'relative', pointerEvents: 'auto' }}>
@@ -244,7 +246,12 @@ export default function Navbar() {
         )}
       </div>
 
-      <style jsx>{`
+      {/* Plain <style> (not styled-jsx): styled-jsx on a client component is
+          only injected after hydration, which meant the desktop nav rendered
+          unstyled and the hamburger stayed visible for one frame. This block is
+          serialised into the SSR HTML, so the >=1024px switch happens before
+          paint — no flash, no layout shift. */}
+      <style>{`
         .menu-link-item:hover {
           background: #edeef2;
           transform: translateX(3px);
@@ -287,6 +294,54 @@ export default function Navbar() {
 
         .navbar-desktop-link:hover {
           background: #aef324;
+          transform: translate(-1px, -1px);
+          box-shadow: 4px 4px 0px #000000;
+        }
+
+        .navbar-desktop-cta {
+          font-family: var(--font-poppins), sans-serif;
+          font-weight: 800;
+          font-size: 0.78rem;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+          color: #ffffff;
+          text-decoration: none;
+          background: #000000;
+          border: 2px solid #000000;
+          border-radius: 8px;
+          padding: 10px 16px;
+          box-shadow: 2px 2px 0px #000000;
+          transition: all 0.15s ease;
+          white-space: nowrap;
+          display: flex;
+          align-items: center;
+        }
+
+        .navbar-desktop-cta:hover {
+          transform: translate(-1px, -1px);
+          box-shadow: 4px 4px 0px #000000;
+        }
+
+        .navbar-desktop-cta {
+          font-family: var(--font-poppins), sans-serif;
+          font-weight: 800;
+          font-size: 0.78rem;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+          color: #ffffff;
+          text-decoration: none;
+          background: #000000;
+          border: 2px solid #000000;
+          border-radius: 8px;
+          padding: 10px 16px;
+          box-shadow: 2px 2px 0px #000000;
+          transition: all 0.15s ease;
+          white-space: nowrap;
+          display: flex;
+          align-items: center;
+        }
+
+        .navbar-desktop-cta:hover {
           transform: translate(-1px, -1px);
           box-shadow: 4px 4px 0px #000000;
         }

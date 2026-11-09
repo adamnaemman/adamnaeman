@@ -213,7 +213,7 @@ export default function Hero() {
             className="hero-positioning"
             style={{
               margin: '22px 0 0 0',
-              maxWidth: '46ch',
+              maxWidth: '60ch',
               fontFamily: 'var(--font-mono), ui-monospace, monospace',
               fontSize: 'clamp(0.68rem, 1.5vw, 0.82rem)',
               fontWeight: 700,
@@ -223,9 +223,9 @@ export default function Hero() {
               color: '#1b1b1b',
             }}
           >
-            Computer science student · builds web apps, ML models and 3D
+            CS (AI) undergrad at IIUM · edge-IoT and ML systems
             <br />
-            <span style={{ color: '#000000' }}>Open to internship</span>
+            <span style={{ color: '#000000' }}>FYP BagSense · in progress</span>
           </p>
         </div>
       </div>
