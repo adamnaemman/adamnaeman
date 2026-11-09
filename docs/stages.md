@@ -301,12 +301,31 @@ bukan commit ini.
 
 ---
 
-## Stage 7 — Hutang kod (P2, paling akhir)
+## Stage 7 — Hutang kod 🟡 (sebahagian — commit `83c07cd`, `ebc46a7`)
 
-- `ProjectsSection.tsx` 1,866 baris, `BackgroundSection.tsx` 1,113, `ContactSection.tsx` 896 → pecah
-- Inline style berulang → token yang dah ada dalam `globals.css`
-- Buang `use client` pada komponen statik
-- Bukti: LOC sebelum/selepas, build lulus, screenshot sama
+- `components/ProjectsSection.tsx`: **1,771 → 547 baris**
+  - `83c07cd` — `ComputerMockup` dipindah ke `components/projects/ComputerMockup.tsx` (markup verbatim;
+    CSS kekal di ProjectsSection sebab semua selector guna `:global(...)`)
+  - `ebc46a7` — blok `<style jsx>` 1,137 baris (semua `:global(...)`) di-unwrap jadi CSS biasa dan
+    dipindah ke `app/globals.css`; CSS tak lagi dihantar dalam chunk JS
+- Angka: page JS **42.3 kB → 37.3 kB**, First Load **130 kB → 125 kB**
+- Bukti visual: overlay 6 workstation, `laptop-lid` radius 14px + shadow 6px, chrome bar, status pill
+  (`LIVE, IN PROGRESS, COURSEWORK, COURSEWORK, PROTOTYPE, HARDWARE BUILD`), imej `naturalWidth=450`
+- `tsc --noEmit` → 0, `npm run build` → Compiled successfully
+
+**Belum:** pecah `BackgroundSection.tsx` (994) dan `ContactSection.tsx` (749) ikut section — dua-dua guna
+`:global` juga, jadi corak sama boleh dipakai bila ada masa.
+
+**Kerja agent lain dalam working tree (belum commit, bukan milik sesi ini):**
+- `components/Hero.tsx` — positioning line ditukar ke fakta sebenar: "CS (AI) undergrad at IIUM ·
+  edge-IoT and ML systems / FYP BagSense · in progress" (lebih tepat daripada versi generik aku)
+- `components/Navbar.tsx` — `<style jsx>` → `<style>` biasa supaya CSS masuk SSR HTML (betulkan flash
+  unstyled yang aku perasan masa ujian), tambah butang "Let's Connect"; ada rule `.navbar-desktop-cta`
+  yang tertulis dua kali (perlu dedupe)
+- `docs/screenshots/` — fail baru
+
+**Susulan:** `public/projects/portfolio.webp` masih screenshot hero LAMA (wordmark bertindih). Kena
+regenerate selepas teks hero agent lain mendarat, kalau tidak kad projek tu tunjuk versi usang.
 
 ---
 
