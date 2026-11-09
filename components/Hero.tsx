@@ -156,16 +156,16 @@ export default function Hero() {
           padding: '0 20px',
         }}
       >
-        {/* Typographic Container */}
+        {/* Typographic Container — wordmark, italic overlayer, positioning line */}
         <div
           style={{
             position: 'relative',
-            display: 'inline-flex',
+            display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
+            width: '100%',
           }}
         >
-          {/* THE BIG BOLD BLACK WORD: adamnaeman in Poppins bold */}
           <h1
             className="hero-bold-word"
             style={{
@@ -186,29 +186,47 @@ export default function Hero() {
             adamnaeman
           </h1>
 
-          {/* THE SERIF SCRIPT/ITALIC OVERLAY: portfolio in Serif font */}
+          {/* Italic overlayer sits under the wordmark, not on top of it — the
+              two used to overlap in the middle and neither was readable. */}
           <span
             className="hero-script-overlay"
             style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%) rotate(-6deg)',
-              fontFamily: 'var(--font-serif), "Playfair Display", "Cormorant Garamond", Georgia, serif',
+              display: 'block',
+              marginTop: '-0.16em',
+              fontFamily: 'var(--font-serif), Georgia, serif',
               fontStyle: 'italic',
               fontWeight: 600,
-              fontSize: 'clamp(2.4rem, 8.5vw, 6.8rem)',
-              color: '#ffffff',
+              fontSize: 'clamp(2rem, 6.2vw, 4.6rem)',
+              color: '#000000',
               whiteSpace: 'nowrap',
               pointerEvents: 'none',
-              zIndex: 5,
-              textShadow: '0 2px 14px rgba(0, 0, 0, 0.45), 0 0 4px rgba(0, 0, 0, 0.9)',
-              letterSpacing: '0.02em',
+              transform: 'rotate(-5deg)',
+              letterSpacing: '0.01em',
               lineHeight: 1,
+              textShadow: '0 2px 0 rgba(255, 255, 255, 0.65)',
             }}
           >
             portfolio
           </span>
+
+          <p
+            className="hero-positioning"
+            style={{
+              margin: '22px 0 0 0',
+              maxWidth: '46ch',
+              fontFamily: 'var(--font-mono), ui-monospace, monospace',
+              fontSize: 'clamp(0.68rem, 1.5vw, 0.82rem)',
+              fontWeight: 700,
+              letterSpacing: '0.06em',
+              lineHeight: 1.7,
+              textTransform: 'uppercase',
+              color: '#1b1b1b',
+            }}
+          >
+            Computer science student · builds web apps, ML models and 3D
+            <br />
+            <span style={{ color: '#000000' }}>Open to internship</span>
+          </p>
         </div>
       </div>
 

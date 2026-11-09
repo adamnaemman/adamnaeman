@@ -69,7 +69,23 @@ export default function Navbar() {
       {/* ==================================================================== */}
       {/* TOP RIGHT: HAMBURGER BUTTON IN THE SQUARE                            */}
       {/* ==================================================================== */}
-      <div style={{ position: 'relative', pointerEvents: 'auto' }}>
+      {/* ==================================================================== */}
+      {/* DESKTOP NAV — hidden below 1024px, where the hamburger takes over     */}
+      {/* ==================================================================== */}
+      <nav className="navbar-desktop-nav" aria-label="Section navigation">
+        {[
+          { href: '#about', label: 'About' },
+          { href: '#background', label: 'Background' },
+          { href: '#projects', label: 'Work' },
+          { href: '#contact', label: 'Contact' },
+        ].map((item) => (
+          <a key={item.href} href={item.href} className="navbar-desktop-link">
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <div className="navbar-hamburger" style={{ position: 'relative', pointerEvents: 'auto' }}>
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           style={{
@@ -242,6 +258,49 @@ export default function Navbar() {
           to {
             opacity: 1;
             transform: translateY(0);
+          }
+        }
+
+        .navbar-desktop-nav {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          pointer-events: auto;
+          margin-top: 2px;
+        }
+
+        .navbar-desktop-link {
+          font-family: var(--font-poppins), sans-serif;
+          font-weight: 700;
+          font-size: 0.78rem;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+          color: #000000;
+          text-decoration: none;
+          background: #ffffff;
+          border: 2px solid #000000;
+          border-radius: 8px;
+          padding: 10px 16px;
+          box-shadow: 2px 2px 0px #000000;
+          transition: all 0.15s ease;
+        }
+
+        .navbar-desktop-link:hover {
+          background: #aef324;
+          transform: translate(-1px, -1px);
+          box-shadow: 4px 4px 0px #000000;
+        }
+
+        /* hamburger only where the nav does not fit */
+        @media (min-width: 1024px) {
+          .navbar-hamburger {
+            display: none;
+          }
+        }
+
+        @media (max-width: 1023px) {
+          .navbar-desktop-nav {
+            display: none;
           }
         }
 
