@@ -157,17 +157,28 @@ Belum ada projek siap → guna kerja sebenar yang ada, label jujur. **Enam proje
 
 ---
 
-## Stage 4 — SEO & shareability (P1)
+## Stage 4 — SEO & shareability ✅ (commit `2e18648`)
 
-Live site sekarang **tiada satu pun tag OG** → share WhatsApp/Telegram keluar kosong.
+Live site sebelum ini **tiada satu pun tag OG** → share WhatsApp/Telegram keluar kosong.
 
-- Fail: `app/layout.tsx` — pindah `themeColor`/`viewport` ke `export const viewport`; tambah
-  `metadataBase`, `openGraph`, `twitter`, `alternates`
-- Fail baru: `app/opengraph-image.tsx` (1200×630)
+- Fail: `app/layout.tsx` — `viewport`/`themeColor` pindah ke `export const viewport`; tambah `metadataBase`,
+  canonical, `openGraph`, `twitter` (dengan `images`)
+- Fail baru: `public/og.png` (1200×630, dijana dengan PIL ikut palet site sendiri)
 - Fail baru: `app/robots.ts`, `app/sitemap.ts`
-- Fail: `app/page.tsx` — JSON-LD `Person` (nama, github, linkedin)
+- Fail: `app/page.tsx` — JSON-LD `Person` (name, jobTitle, knowsAbout, sameAs GitHub + LinkedIn, address MY)
 
-**Bukti:** `curl -s https://adamnaeman.vercel.app | grep -o 'og:[a-z]*' | sort -u` → ada; build 0 warning.
+**Kegagalan dijumpai:** `app/opengraph-image.tsx` (next/og ImageResponse) **gagal semasa prerender** pada
+Windows + Next 14 — `TypeError: Invalid URL` dalam `fileURLToPath` (@vercel/og). Bukan kod projek.
+Penyelesaian: PNG statik + `openGraph.images`, tiada runtime OG. Fail `opengraph-image.tsx` dibuang.
+
+**Bukti:**
+- `tsc --noEmit` → exit 0; `npm run build` → Compiled successfully, **0 "Unsupported metadata" warning**
+  (sebelum ini 4), route table tambah `/robots.txt` dan `/sitemap.xml`
+- `curl /` → tag lengkap: `og:title`, `og:description`, `og:url`, `og:site_name`, `og:locale`, `og:image`
+  (1200×630 + alt), `og:type`, `twitter:card=summary_large_image`; `<link rel=canonical>` betul
+- `curl /robots.txt` → `Allow: /` + `Sitemap:`; `curl /sitemap.xml` → 1 URL
+- JSON-LD: `"@context":"https://schema.org"`, `"@type":"Person"` hadir dalam HTML
+- Live selepas deploy: `robots.txt` 200, `sitemap.xml` 200, `og.png` 200, `og:image` hadir dalam HTML
 
 ---
 
