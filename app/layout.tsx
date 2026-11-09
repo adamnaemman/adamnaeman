@@ -6,6 +6,8 @@ import {
   Silkscreen,
   Titan_One,
   Playfair_Display,
+  Plus_Jakarta_Sans,
+  Permanent_Marker,
 } from 'next/font/google';
 import './globals.css';
 
@@ -13,7 +15,7 @@ import './globals.css';
 // weights this design actually uses are downloaded.
 const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['400', '600', '700', '800', '900'],
+  weight: ['400', '500', '600', '700', '800', '900'],
   variable: '--ff-poppins',
   display: 'swap',
 });
@@ -46,6 +48,20 @@ const playfair = Playfair_Display({
   variable: '--ff-serif',
   display: 'swap',
 });
+// Body copy and the graffiti accent keep their own families: they are roles in
+// globals.css, not decorative duplicates of Poppins.
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '600', '700', '800'],
+  variable: '--ff-body',
+  display: 'swap',
+});
+const marker = Permanent_Marker({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--ff-graffiti',
+  display: 'swap',
+});
 
 const FONT_VARS = [
   poppins.variable,
@@ -54,6 +70,8 @@ const FONT_VARS = [
   silkscreen.variable,
   titan.variable,
   playfair.variable,
+  jakarta.variable,
+  marker.variable,
 ].join(' ');
 
 const SITE_URL = 'https://adamnaeman.vercel.app';

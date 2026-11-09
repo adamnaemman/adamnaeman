@@ -66,9 +66,9 @@
   --font-bubble: var(--ff-bubble), system-ui, sans-serif;
   --font-bungee: var(--ff-bubble), system-ui, sans-serif;
   --font-pixel: var(--ff-pixel), ui-monospace, monospace;
-  --font-graffiti: var(--ff-bubble), system-ui, sans-serif;
+  --font-graffiti: var(--ff-graffiti), cursive;
   --font-mono: var(--ff-mono), ui-monospace, monospace;
-  --font-body: var(--ff-poppins), system-ui, sans-serif;
+  --font-body: var(--ff-body), system-ui, sans-serif;
 
   --radius-sm: 8px;
   --radius-md: 14px;
